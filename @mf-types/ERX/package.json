@@ -1,0 +1,8 @@
+{
+    "name": "@types/ERX",
+    "version": "0.25.5",
+    "description": "Placholder for federated typings",
+    "license": "MIT",
+    "main": "",
+    "types": "index.d.ts"
+}

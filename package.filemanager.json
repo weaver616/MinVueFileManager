@@ -1,0 +1,13 @@
+{
+  "name": "file-manager-component",
+  "version": "1.0.0",
+  "description": "File Manager Component for Micro Frontend",
+  "scripts": {
+    "build:filemanager": "vite build --config vite.filemanager.config.ts",
+    "preview:filemanager": "vite preview --config vite.filemanager.config.ts"
+  },
+  "exports": {
+    "./FileManagerApi": "./dist/remote_exposes/FileManager/FileManagerApi.js",
+    "./FileManagerService": "./dist/remote_exposes/FileManager/FileManagerService.js"
+  }
+}
