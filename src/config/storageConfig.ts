@@ -70,9 +70,48 @@ function mergeConfig(
   base: StorageConfiguration,
   overrides: Partial<StorageConfiguration>
 ): StorageConfiguration {
+  const endpoint =
+    typeof overrides.endpoint === 'string'
+      ? overrides.endpoint.trim().replace(/^`+|`+$/g, '')
+      : base.endpoint;
+  const accessKeyId =
+    typeof overrides.accessKeyId === 'string'
+      ? overrides.accessKeyId.trim()
+      : base.accessKeyId;
+  const secretAccessKey =
+    typeof overrides.secretAccessKey === 'string'
+      ? overrides.secretAccessKey.trim()
+      : base.secretAccessKey;
+  const bucketName =
+    typeof overrides.bucketName === 'string'
+      ? overrides.bucketName.trim()
+      : base.bucketName;
+  const region =
+    typeof overrides.region === 'string'
+      ? overrides.region.trim()
+      : base.region;
+  const forcePathStyle =
+    typeof overrides.forcePathStyle === 'boolean'
+      ? overrides.forcePathStyle
+      : base.forcePathStyle;
+  const maxFileSize =
+    typeof overrides.maxFileSize === 'number'
+      ? overrides.maxFileSize
+      : base.maxFileSize;
+  const uploadTimeout =
+    typeof overrides.uploadTimeout === 'number'
+      ? overrides.uploadTimeout
+      : base.uploadTimeout;
   return {
     ...base,
-    ...overrides,
+    endpoint,
+    accessKeyId,
+    secretAccessKey,
+    bucketName,
+    region,
+    forcePathStyle,
+    maxFileSize,
+    uploadTimeout,
     allowedFileTypes: Array.isArray(overrides.allowedFileTypes)
       ? overrides.allowedFileTypes
       : base.allowedFileTypes,

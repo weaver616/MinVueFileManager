@@ -2,9 +2,6 @@ import { DataType, IServiceTransformer, ValueType } from './type';
 import { EITools } from './ei-tools';
 export declare namespace EI {
     /**
-     * Make all properties in T required
-     */
-    /**
      * ArrayObject结构的Block
      */
     export class EiBlock {
@@ -116,7 +113,19 @@ export declare namespace EI {
         insertRow(index: number, rowData: {
             [key: string]: ValueType;
         }): EiBlock;
+        /**
+         * 将EiBlock转换为JSON格式
+         * @param dataTransformer
+         * @returns EiBlockJson
+         */
         toJSON(dataTransformer?: IServiceTransformer): EITools.__BlockJson__;
+        /**
+         * 解析 JSON 字符串或对象为 EiBlock 对象
+         * @param input JSON 字符串或对象
+         * @param dataTransformer 数据转换器
+         * @returns EiBlock
+         */
+        static parseJSON(input: string | Record<string, any>, dataTransformer?: IServiceTransformer): EiBlock;
         /**
          * 通过列英文名数组['field1', 'field2']，或者[{field1: '', field2: ''},{},{}]形式的数组创建EiBlock
          * @param blockId 数据块的id
@@ -259,6 +268,26 @@ export declare namespace EI {
          * @returns EIinfo_Json
          */
         toJSON(dataTransformer?: IServiceTransformer): EITools.__EIInfoJson__;
+        /**
+         * 解析 JSON 字符串或对象为 EIInfo 对象
+         * @param input JSON 字符串或对象
+         * @param dataTransformer 数据转换器
+         * @returns EIInfo
+         */
+        static parseJSON(input: string | Record<string, any>, dataTransformer?: IServiceTransformer): EIInfo;
+        /**
+         * 将List<Object> 格式的数据转换为 EIInfo 对象
+         * @param input List<Object> 格式的数据
+         * @returns EIInfo
+         */
+        static fromMap(input: Record<string, Record<string, any>[]>): EIInfo;
+        /**
+         * 将EIInfo对象转换为Map<String, List<Object>>格式的数据
+         * @param eiInfo EIInfo对象
+         * @returns Map<String, List<Object>>
+         *
+         */
+        static toMap(eiInfo: EIInfo): Record<string, Record<string, any>[]>;
     }
     export class EDInfo implements EITools.__IEDInfo__ {
         constructor();

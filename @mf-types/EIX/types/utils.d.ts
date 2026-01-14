@@ -1,7 +1,7 @@
-import { EI } from './ei';
 import { IEnvironment, IUserInfo } from './model';
-import { ValueType } from './type';
+import { EI } from './ei';
 import { EITools } from './ei-tools';
+import { ValueType } from './type';
 /**
  * 获取本地Token
  * @returns string | null
@@ -111,10 +111,8 @@ export declare const isPlatJ: () => boolean;
 export declare const MASTER_EP_NAME: string;
 export declare const EP_NAME: string;
 export declare const base64Encode: (arrayBuffer: ArrayBuffer) => string;
-export declare const base64Decode: (base64String: string) => ArrayBuffer;
+export declare const base64Decode: (base64String: string) => Buffer;
 export declare const toIsoString: (date: Date) => string;
 export declare const setPlatLocalStorage: (key: string, value: any, remember?: boolean) => void;
 export declare const getPlatLocalStorage: (key: string, remember?: boolean) => string | null;
 export declare const removePlatLocalStorage: (key: string) => void;
-export declare function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void;
-export declare function safeJSONParse<T>(json: string, fallback: T): T;

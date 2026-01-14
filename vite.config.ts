@@ -36,37 +36,33 @@ export default (configEnv: ConfigEnv) => {
     name: `${appName}_general`,
     filename: "remoteEntry.js",
     remotes: {
-      EFX: __DEV__
-        ? `${baseApi}remote_exposes/EFX/assets/remoteEntry.js`
-        : {
-            external: `Promise.resolve(
-              window.top._APP_OPTIONS_  ?
-              window.top._APP_OPTIONS_.appContext + 'remote_exposes/EFX/assets/remoteEntry.js' 
-                : '/remote_exposes/EFX/assets/remoteEntry.js'
-              )`,
-            externalType: "promise",
-          },
-      EIX: __DEV__
-        ? `${baseApi}remote_exposes/EIX/assets/remoteEntry.js`
-        : {
-            external: `Promise.resolve(
-            window.top._APP_OPTIONS_  ?
-            window.top._APP_OPTIONS_.appContext + 'remote_exposes/EIX/assets/remoteEntry.js' 
-              : '/remote_exposes/EIX/assets/remoteEntry.js'
-            )`,
-            externalType: "promise",
-          },
-
-      ERX: __DEV__
-        ? `${baseApi}remote_exposes/ERX/assets/remoteEntry.js`
-        : {
-            external: `Promise.resolve(
-          window.top._APP_OPTIONS_  ?
-          window.top._APP_OPTIONS_.appContext + 'remote_exposes/ERX/assets/remoteEntry.js'
+      EPTFMERGE: `http://localhost:5001/assets/remoteEntry.js`,
+      EFX: {
+        external: `Promise.resolve(
+          window.top && window.top._APP_OPTIONS_ && window.top._APP_OPTIONS_.appContext
+            ? window.top._APP_OPTIONS_.appContext + 'remote_exposes/EFX/assets/remoteEntry.js'
+            : '/remote_exposes/EFX/assets/remoteEntry.js'
+        )`,
+        externalType: "promise",
+      },
+      EIX: {
+        external: `Promise.resolve(
+          window.top && window.top._APP_OPTIONS_ && window.top._APP_OPTIONS_.appContext
+            ? window.top._APP_OPTIONS_.appContext + 'remote_exposes/EIX/assets/remoteEntry.js'
+            : '/remote_exposes/EIX/assets/remoteEntry.js'
+        )`,
+        externalType: "promise",
+      },
+      ERX: {
+        external: `Promise.resolve(
+          window.top && window.top._APP_OPTIONS_ && window.top._APP_OPTIONS_.appContext
+            ? window.top._APP_OPTIONS_.appContext + 'remote_exposes/ERX/assets/remoteEntry.js'
             : '/remote_exposes/ERX/assets/remoteEntry.js'
-          )`,
-            externalType: "promise",
-          },
+        )`,
+        externalType: "promise",
+      },
+
+     
       // 附件上传组件引用关系。若不需要请注释掉，否则应用会报错
       // EPTF: __DEV__
       //   ? `${baseApi}remote_exposes/EPTF/assets/remoteEntry.js`
@@ -89,16 +85,16 @@ export default (configEnv: ConfigEnv) => {
       //     )`,
       //       externalType: "promise",
       //     },
-      FileManager: __DEV__
-        ? `${baseApi}remote_exposes/FileManager/assets/remoteEntry.js`
-        : {
-            external: `Promise.resolve(
-              window.top._APP_OPTIONS_  ?
-              window.top._APP_OPTIONS_.appContext + 'remote_exposes/FileManager/assets/remoteEntry.js' 
-                : '/remote_exposes/FileManager/assets/remoteEntry.js'
-              )`,
-            externalType: "promise",
-          },
+      // FileManager: __DEV__
+      //   ? `${baseApi}remote_exposes/FileManager/assets/remoteEntry.js`
+      //   : {
+      //       external: `Promise.resolve(
+      //         window.top._APP_OPTIONS_  ?
+      //         window.top._APP_OPTIONS_.appContext + 'remote_exposes/FileManager/assets/remoteEntry.js' 
+      //           : '/remote_exposes/FileManager/assets/remoteEntry.js'
+      //         )`,
+      //       externalType: "promise",
+      //     },
     },
     shared: ["vue"],
   };
@@ -185,5 +181,23 @@ export default (configEnv: ConfigEnv) => {
       sourcemap: false,
       minify: true,
     },
+    optimizeDeps: {
+      exclude: [
+        "EIX/ei",
+        "EFX/locale",
+        "EFX/agPlugins",
+        "EFX/AgGridVue",
+        "EFX/theme",
+        "ERX/ErI18n",
+        "EFX/xrEfForm",
+        "EFX/EFDialogForm",
+        "EFX/xrEfPanel",
+        "EFX/xrEfSearchBox",
+        "ERX/ErLayout",
+        "ERX/ErGrid",
+        "ERX/Er",
+        "ERX/ErPopFree"
+      ]
+    }
   });
 };

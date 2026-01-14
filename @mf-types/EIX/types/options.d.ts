@@ -14,12 +14,14 @@ export interface IAxiosInitConfig {
     messageService?: any;
     prefix?: string;
     useGatewayProxy?: boolean;
+    sessionIdentifier?: string;
 }
 /**
  * 初始化EI
  * @param options
  */
 export declare function init(options: IAxiosInitConfig): void;
+export declare function clearConfig(): void;
 /**
  *
  * @returns 获取初始化配置

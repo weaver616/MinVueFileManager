@@ -38,6 +38,10 @@ declare module "ERX" {
 declare module "EPTF" {
   export * from "#/@mf-types/EPTF";
 }
+// 声明文件
+declare module "EPTFMERGE" {
+  export * from "#/@mf-types/EPTFMERGE";
+}
 declare module "splitpanes";
 // declare module '@module-federation/native-federation-typescript/*';
 // declare module '@module-federation/native-federation-tests/*';

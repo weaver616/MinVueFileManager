@@ -1,6 +1,6 @@
 export type DataType = 'C' | 'N' | 'D' | 'B' | 'X';
-export type ValueType = string | number | boolean | Date | ArrayBuffer | null;
 export type DataTypeV1 = 'S' | 'F' | 'I' | 'D' | 'B';
+export type ValueType = string | number | boolean | Date | ArrayBuffer | null;
 export type JsonValueType = string | number | boolean | null;
 export declare const __IDField__ = "ID";
 export interface IServiceTransformer {

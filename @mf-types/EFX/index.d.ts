@@ -984,7 +984,7 @@ declare module "EFX/xrEfSearchBox" {
 }
 declare module "EFX/xrEfDialog" {
   const _default: import("vue").DefineComponent<
-    {
+    import("vue").ExtractPropTypes<{
       debounce: {
         type: BooleanConstructor;
         default: boolean;
@@ -1053,7 +1053,15 @@ declare module "EFX/xrEfDialog" {
         type: StringConstructor;
         default: string;
       };
-    },
+      formName: {
+        type: StringConstructor;
+        default: string;
+      };
+      zIndex: {
+        type: NumberConstructor;
+        default: number;
+      };
+    }>,
     {
       tI18n: {
         <
@@ -1501,19 +1509,19 @@ declare module "EFX/xrEfDialog" {
           options: import("vue-i18n").TranslateOptions<string>
         ): string;
       };
-      dialogHeight: import("vue").Ref<string | number>;
-      dialogWidth: import("vue").Ref<string | number>;
-      isRender: import("vue").Ref<boolean>;
-      dialogFrameRef: any;
-      xrEfDialogRef: any;
+      dialogHeight: import("vue").Ref<string | number, string | number>;
+      dialogWidth: import("vue").Ref<string | number, string | number>;
+      isRender: import("vue").Ref<boolean, boolean>;
+      dialogFrameRef: import("vue").Ref<any, any>;
+      xrEfDialogRef: import("vue").Ref<any, any>;
       onClickClose: () => void;
-      dialogZIndex: import("vue").Ref<number>;
+      dialogZIndex: import("vue").Ref<number, number>;
       confirmClick: () => void;
       cancelClick: () => void;
       dialogResize: () => void;
       onOpen: () => void;
     },
-    unknown,
+    {},
     {},
     {},
     import("vue").ComponentOptionsMixin,
@@ -1532,9 +1540,7 @@ declare module "EFX/xrEfDialog" {
     | "clickCloseIcon"
     | "update:visible"
     | "dialogResize",
-    import("vue").VNodeProps &
-      import("vue").AllowedComponentProps &
-      import("vue").ComponentCustomProps,
+    import("vue").PublicProps,
     Readonly<
       import("vue").ExtractPropTypes<{
         debounce: {
@@ -1605,34 +1611,307 @@ declare module "EFX/xrEfDialog" {
           type: StringConstructor;
           default: string;
         };
+        formName: {
+          type: StringConstructor;
+          default: string;
+        };
+        zIndex: {
+          type: NumberConstructor;
+          default: number;
+        };
       }>
-    > & {
-      onOpen?: ((...args: any[]) => any) | undefined;
-      onCancel?: ((...args: any[]) => any) | undefined;
-      onConfirm?: ((...args: any[]) => any) | undefined;
-      onClickCloseIcon?: ((...args: any[]) => any) | undefined;
-      "onUpdate:visible"?: ((...args: any[]) => any) | undefined;
-      onDialogResize?: ((...args: any[]) => any) | undefined;
-    },
+    > &
+      Readonly<{
+        onOpen?: ((...args: any[]) => any) | undefined;
+        onCancel?: ((...args: any[]) => any) | undefined;
+        "onUpdate:visible"?: ((...args: any[]) => any) | undefined;
+        onConfirm?: ((...args: any[]) => any) | undefined;
+        onClickCloseIcon?: ((...args: any[]) => any) | undefined;
+        onDialogResize?: ((...args: any[]) => any) | undefined;
+      }>,
     {
       title: string;
       width: string | number;
       height: string | number;
-      class: string;
       id: string;
-      modal: boolean;
-      parentFormRef: any;
+      class: string;
       debounce: boolean;
+      zIndex: number;
+      modal: boolean;
+      actions: unknown[];
+      formName: string;
+      parentFormRef: any;
       debounceWait: number;
       resizable: boolean;
       draggable: boolean;
-      actions: unknown[];
+      showCancel: boolean;
       defaultFooter: boolean;
       destroyOnClose: boolean;
       showConfirm: boolean;
-      showCancel: boolean;
     },
-    {}
+    {},
+    {
+      dialogFrame: import("vue").DefineComponent<
+        import("vue").ExtractPropTypes<{
+          sameApp: {
+            type: BooleanConstructor;
+            required: true;
+          };
+          formName: {
+            type: StringConstructor;
+            default: string;
+          };
+          sameAppformName: {
+            type: StringConstructor;
+            default: string;
+          };
+          parentFormRef: {
+            type: any;
+            default: null;
+          };
+          modalZIndex: {
+            type: NumberConstructor;
+            default: number;
+          };
+          title: {
+            type: StringConstructor;
+            default: string;
+          };
+          width: {
+            type: (NumberConstructor | StringConstructor)[];
+            default: string;
+          };
+          height: {
+            type: (NumberConstructor | StringConstructor)[];
+            default: string;
+          };
+          message: {
+            type: ObjectConstructor;
+            default: () => {};
+          };
+          destroy: {
+            type: FunctionConstructor;
+            default: () => void;
+          };
+          debounce: {
+            type: BooleanConstructor;
+            default: boolean;
+          };
+          debounceWait: {
+            type: NumberConstructor;
+            default: number;
+          };
+          defaultWidth: {
+            type: (NumberConstructor | StringConstructor)[];
+            default: string;
+          };
+          defaultHeight: {
+            type: (NumberConstructor | StringConstructor)[];
+            default: string;
+          };
+          resizable: {
+            type: BooleanConstructor;
+            default: boolean;
+          };
+          draggable: {
+            type: BooleanConstructor;
+            default: boolean;
+          };
+          actions: {
+            type: ArrayConstructor;
+            default: string[];
+          };
+        }>,
+        any,
+        {},
+        {},
+        {},
+        import("vue").ComponentOptionsMixin,
+        import("vue").ComponentOptionsMixin,
+        ("open" | "clickClose" | "formResize")[],
+        "open" | "clickClose" | "formResize",
+        import("vue").PublicProps,
+        Readonly<
+          import("vue").ExtractPropTypes<{
+            sameApp: {
+              type: BooleanConstructor;
+              required: true;
+            };
+            formName: {
+              type: StringConstructor;
+              default: string;
+            };
+            sameAppformName: {
+              type: StringConstructor;
+              default: string;
+            };
+            parentFormRef: {
+              type: any;
+              default: null;
+            };
+            modalZIndex: {
+              type: NumberConstructor;
+              default: number;
+            };
+            title: {
+              type: StringConstructor;
+              default: string;
+            };
+            width: {
+              type: (NumberConstructor | StringConstructor)[];
+              default: string;
+            };
+            height: {
+              type: (NumberConstructor | StringConstructor)[];
+              default: string;
+            };
+            message: {
+              type: ObjectConstructor;
+              default: () => {};
+            };
+            destroy: {
+              type: FunctionConstructor;
+              default: () => void;
+            };
+            debounce: {
+              type: BooleanConstructor;
+              default: boolean;
+            };
+            debounceWait: {
+              type: NumberConstructor;
+              default: number;
+            };
+            defaultWidth: {
+              type: (NumberConstructor | StringConstructor)[];
+              default: string;
+            };
+            defaultHeight: {
+              type: (NumberConstructor | StringConstructor)[];
+              default: string;
+            };
+            resizable: {
+              type: BooleanConstructor;
+              default: boolean;
+            };
+            draggable: {
+              type: BooleanConstructor;
+              default: boolean;
+            };
+            actions: {
+              type: ArrayConstructor;
+              default: string[];
+            };
+          }>
+        > &
+          Readonly<{
+            onClickClose?: ((...args: any[]) => any) | undefined;
+            onOpen?: ((...args: any[]) => any) | undefined;
+            onFormResize?: ((...args: any[]) => any) | undefined;
+          }>,
+        {
+          title: string;
+          message: Record<string, any>;
+          width: string | number;
+          height: string | number;
+          modalZIndex: number;
+          destroy: Function;
+          debounce: boolean;
+          actions: unknown[];
+          formName: string;
+          sameAppformName: string;
+          parentFormRef: any;
+          debounceWait: number;
+          defaultWidth: string | number;
+          defaultHeight: string | number;
+          resizable: boolean;
+          draggable: boolean;
+        },
+        {},
+        {
+          "wujie-vue": {
+            new (
+              ...args: any[]
+            ): import("vue").CreateComponentPublicInstanceWithMixins<
+              Readonly<import("vue").ExtractPropTypes<{}>>,
+              {},
+              {},
+              import("vue").ComputedOptions,
+              import("vue").MethodOptions,
+              import("vue").ComponentOptionsMixin,
+              import("vue").ComponentOptionsMixin,
+              {},
+              import("vue").PublicProps,
+              {},
+              true,
+              {},
+              {},
+              import("vue").GlobalComponents,
+              import("vue").GlobalDirectives,
+              string,
+              {},
+              any,
+              import("vue").ComponentProvideOptions,
+              {
+                P: {};
+                B: {};
+                D: {};
+                C: {};
+                M: {};
+                Defaults: {};
+              },
+              Readonly<import("vue").ExtractPropTypes<{}>>,
+              {},
+              {},
+              import("vue").ComputedOptions,
+              import("vue").MethodOptions,
+              {}
+            >;
+            __isFragment?: undefined;
+            __isTeleport?: undefined;
+            __isSuspense?: undefined;
+          } & import("vue").ComponentOptionsBase<
+            Readonly<import("vue").ExtractPropTypes<{}>>,
+            {},
+            {},
+            import("vue").ComputedOptions,
+            import("vue").MethodOptions,
+            import("vue").ComponentOptionsMixin,
+            import("vue").ComponentOptionsMixin,
+            {},
+            string,
+            {},
+            {},
+            string,
+            {},
+            import("vue").GlobalComponents,
+            import("vue").GlobalDirectives,
+            string,
+            import("vue").ComponentProvideOptions
+          > &
+            import("vue").VNodeProps &
+            import("vue").AllowedComponentProps &
+            import("vue").ComponentCustomProps &
+            import("vue").Plugin & {
+              bus: import("wujie/esm/event").EventBus;
+              setupApp: typeof import("wujie").setupApp;
+              preloadApp: typeof import("wujie").preloadApp;
+              destroyApp: typeof import("wujie").destroyApp;
+            };
+        },
+        {},
+        string,
+        import("vue").ComponentProvideOptions,
+        true,
+        {},
+        any
+      >;
+    },
+    {},
+    string,
+    import("vue").ComponentProvideOptions,
+    true,
+    {},
+    any
   >;
   export default _default;
 }
@@ -2204,6 +2483,7 @@ declare module "EFX/type" {
     exportData?: Record<string, any>;
     fileName?: string;
     header?: IExportHeader;
+    excelStyles?: any[];
   }
   export interface IAllSheetData {
     name: string;
@@ -2256,7 +2536,11 @@ declare module "EFX/type" {
 declare module "EFX/EFGridUtils" {
   import { IExportConfig, IAllSheetData } from "EFX/type";
   export default class EFGridUtils {
-    static exportGridAsExcel(gridRef: any, exportConfig: IExportConfig): void;
+    static exportGridAsExcel(
+      gridRef: any,
+      exportConfig: IExportConfig,
+      useOldModeForExport?: boolean
+    ): void;
     /**
      * @description: 导入excel获取Sheet1中的excel数据
      * @param {any} gridInstance
@@ -2940,14 +3224,13 @@ declare module "EFX/xrEfSelect" {
     tokenSeparators?: string;
     appendTo?: string;
     format?: string | any;
+    resizable?: boolean;
   }
   const _default: import("vue").DefineComponent<
     {
+      modelValue: PropType<any>;
       id: {
         type: StringConstructor;
-      };
-      modelValue: {
-        type: (ArrayConstructor | StringConstructor)[];
       };
       width: {
         type: (NumberConstructor | StringConstructor)[];
@@ -2978,7 +3261,6 @@ declare module "EFX/xrEfSelect" {
     import("vue").ComponentOptionsMixin,
     {
       change: (...args: any[]) => void;
-      "update:modelValue": (...args: any[]) => void;
     },
     string,
     import("vue").VNodeProps &
@@ -2986,11 +3268,9 @@ declare module "EFX/xrEfSelect" {
       import("vue").ComponentCustomProps,
     Readonly<
       import("vue").ExtractPropTypes<{
+        modelValue: PropType<any>;
         id: {
           type: StringConstructor;
-        };
-        modelValue: {
-          type: (ArrayConstructor | StringConstructor)[];
         };
         width: {
           type: (NumberConstructor | StringConstructor)[];
@@ -3015,7 +3295,6 @@ declare module "EFX/xrEfSelect" {
       }>
     > & {
       onChange?: ((...args: any[]) => any) | undefined;
-      "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
     },
     {
       width: string | number;
@@ -3031,16 +3310,16 @@ declare module "EFX/xrEfPartitionSelect" {
   interface xrEfSelectOptions {
     valueField: string;
     textField: string;
+    tokenSeparators?: string;
     appendTo?: string;
     format?: string | any;
+    resizable?: boolean;
   }
   const _default: import("vue").DefineComponent<
     {
+      modelValue: PropType<any>;
       id: {
         type: StringConstructor;
-      };
-      modelValue: {
-        type: (ArrayConstructor | StringConstructor)[];
       };
       width: {
         type: (NumberConstructor | StringConstructor)[];
@@ -3071,7 +3350,6 @@ declare module "EFX/xrEfPartitionSelect" {
     import("vue").ComponentOptionsMixin,
     {
       change: (...args: any[]) => void;
-      "update:modelValue": (...args: any[]) => void;
     },
     string,
     import("vue").VNodeProps &
@@ -3079,11 +3357,9 @@ declare module "EFX/xrEfPartitionSelect" {
       import("vue").ComponentCustomProps,
     Readonly<
       import("vue").ExtractPropTypes<{
+        modelValue: PropType<any>;
         id: {
           type: StringConstructor;
-        };
-        modelValue: {
-          type: (ArrayConstructor | StringConstructor)[];
         };
         width: {
           type: (NumberConstructor | StringConstructor)[];
@@ -3108,7 +3384,6 @@ declare module "EFX/xrEfPartitionSelect" {
       }>
     > & {
       onChange?: ((...args: any[]) => any) | undefined;
-      "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
     },
     {
       width: string | number;
@@ -3117,6 +3392,80 @@ declare module "EFX/xrEfPartitionSelect" {
     {}
   >;
   export default _default;
+}
+declare module "EFX/authButton" {
+  interface Props {
+    name: string;
+    text?: string;
+    class?: string;
+  }
+  const _default: import("vue").DefineComponent<
+    __VLS_WithDefaults<
+      __VLS_TypePropsToRuntimeProps<Props>,
+      {
+        name: string;
+        text: string;
+        class: string;
+      }
+    >,
+    {},
+    unknown,
+    {},
+    {},
+    import("vue").ComponentOptionsMixin,
+    import("vue").ComponentOptionsMixin,
+    {
+      click: (...args: any[]) => void;
+    },
+    string,
+    import("vue").VNodeProps &
+      import("vue").AllowedComponentProps &
+      import("vue").ComponentCustomProps,
+    Readonly<
+      import("vue").ExtractPropTypes<
+        __VLS_WithDefaults<
+          __VLS_TypePropsToRuntimeProps<Props>,
+          {
+            name: string;
+            text: string;
+            class: string;
+          }
+        >
+      >
+    > & {
+      onClick?: ((...args: any[]) => any) | undefined;
+    },
+    {
+      text: string;
+      name: string;
+      class: string;
+    },
+    {}
+  >;
+  export default _default;
+  type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+  type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K>
+      ? {
+          type: import("vue").PropType<__VLS_NonUndefinedable<T[K]>>;
+        }
+      : {
+          type: import("vue").PropType<T[K]>;
+          required: true;
+        };
+  };
+  type __VLS_WithDefaults<P, D> = {
+    [K in keyof Pick<P, keyof P>]: K extends keyof D
+      ? __VLS_Prettify<
+          P[K] & {
+            default: D[K];
+          }
+        >
+      : P[K];
+  };
+  type __VLS_Prettify<T> = {
+    [K in keyof T]: T[K];
+  } & {};
 }
 declare module "EFX/EFModuleUtils" {
   /**
@@ -3234,11 +3583,11 @@ declare module "EFX/EFMicroUtils" {
      * 判断当前是否处于微前端环境。
      * @returns {boolean} 返回 `true` 表示当前处于微前端环境，否则返回 `false`。
      * @example
-     * if (EFMicroUtils.isMicroEnv()) {
+     * if (EFMicroUtils.isMicroEnv) {
      *   console.log('当前处于微前端环境');
      * }
      */
-    static isMicroEnv(): boolean;
+    static get isMicroEnv(): boolean;
     /**
      * 获取当前微前端环境类型。
      * @returns {string} 返回微前端环境类型：
@@ -3246,8 +3595,12 @@ declare module "EFX/EFMicroUtils" {
      * - `'micro-app'`：基于jd微应用的微前端环境。
      * - `'none'`：非微前端环境。
      */
-    static getMicroEnv(): "none" | "wujie" | "micro-app";
-    static getMicroAppName(): any;
+    static get microEnv(): "none" | "wujie" | "micro-app";
+    /**
+     * 获取当前微前端环境中的应用id。
+     * @returns {string} 返回当前微前端环境中的应用id。
+     */
+    static get microAppId(): any;
   }
   export default EFMicroUtils;
 }
@@ -3305,10 +3658,457 @@ declare module "EFX/agDateEditor" {
       params?: any;
     }>,
     {
+      showTime: any;
+      tI18n: {
+        <
+          Key extends string,
+          DefinedLocaleMessage extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K in keyof DefinedLocaleMessage]: DefinedLocaleMessage[K];
+              }>
+            : never,
+          ResourceKeys extends Keys = import("vue-i18n").IsNever<Keys> extends false
+            ? Keys
+            : never
+        >(
+          key: string | Key | ResourceKeys
+        ): string;
+        <
+          Key_1 extends string,
+          DefinedLocaleMessage_1 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_1 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_1> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_1 in keyof DefinedLocaleMessage_1]: DefinedLocaleMessage_1[K_1];
+              }>
+            : never,
+          ResourceKeys_1 extends Keys_1 = import("vue-i18n").IsNever<Keys_1> extends false
+            ? Keys_1
+            : never
+        >(
+          key: string | Key_1 | ResourceKeys_1
+        ): string;
+        <
+          Key_2 extends string,
+          DefinedLocaleMessage_2 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_2 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_2> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_2 in keyof DefinedLocaleMessage_2]: DefinedLocaleMessage_2[K_2];
+              }>
+            : never,
+          ResourceKeys_2 extends Keys_2 = import("vue-i18n").IsNever<Keys_2> extends false
+            ? Keys_2
+            : never
+        >(
+          key: string | Key_2 | ResourceKeys_2,
+          locale: string,
+          list: unknown[]
+        ): string;
+        <
+          Key_3 extends string,
+          DefinedLocaleMessage_3 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_3 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_3> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_3 in keyof DefinedLocaleMessage_3]: DefinedLocaleMessage_3[K_3];
+              }>
+            : never,
+          ResourceKeys_3 extends Keys_3 = import("vue-i18n").IsNever<Keys_3> extends false
+            ? Keys_3
+            : never
+        >(
+          key: string | Key_3 | ResourceKeys_3,
+          locale: string,
+          named: object
+        ): string;
+        <
+          Key_4 extends string,
+          DefinedLocaleMessage_4 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_4 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_4> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_4 in keyof DefinedLocaleMessage_4]: DefinedLocaleMessage_4[K_4];
+              }>
+            : never,
+          ResourceKeys_4 extends Keys_4 = import("vue-i18n").IsNever<Keys_4> extends false
+            ? Keys_4
+            : never
+        >(
+          key: string | Key_4 | ResourceKeys_4,
+          list: unknown[]
+        ): string;
+        <
+          Key_5 extends string,
+          DefinedLocaleMessage_5 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_5 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_5> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_5 in keyof DefinedLocaleMessage_5]: DefinedLocaleMessage_5[K_5];
+              }>
+            : never,
+          ResourceKeys_5 extends Keys_5 = import("vue-i18n").IsNever<Keys_5> extends false
+            ? Keys_5
+            : never
+        >(
+          key: string | Key_5 | ResourceKeys_5,
+          named: Record<string, unknown>
+        ): string;
+        <
+          Key_6 extends string,
+          DefinedLocaleMessage_6 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_6 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_6> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_6 in keyof DefinedLocaleMessage_6]: DefinedLocaleMessage_6[K_6];
+              }>
+            : never,
+          ResourceKeys_6 extends Keys_6 = import("vue-i18n").IsNever<Keys_6> extends false
+            ? Keys_6
+            : never
+        >(
+          key: string | Key_6 | ResourceKeys_6
+        ): string;
+        <
+          Key_7 extends string,
+          DefinedLocaleMessage_7 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_7 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_7> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_7 in keyof DefinedLocaleMessage_7]: DefinedLocaleMessage_7[K_7];
+              }>
+            : never,
+          ResourceKeys_7 extends Keys_7 = import("vue-i18n").IsNever<Keys_7> extends false
+            ? Keys_7
+            : never
+        >(
+          key: string | Key_7 | ResourceKeys_7,
+          plural: number
+        ): string;
+        <
+          Key_8 extends string,
+          DefinedLocaleMessage_8 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_8 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_8> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_8 in keyof DefinedLocaleMessage_8]: DefinedLocaleMessage_8[K_8];
+              }>
+            : never,
+          ResourceKeys_8 extends Keys_8 = import("vue-i18n").IsNever<Keys_8> extends false
+            ? Keys_8
+            : never
+        >(
+          key: string | Key_8 | ResourceKeys_8,
+          plural: number,
+          options: import("vue-i18n").TranslateOptions<string>
+        ): string;
+        <
+          Key_9 extends string,
+          DefinedLocaleMessage_9 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_9 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_9> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_9 in keyof DefinedLocaleMessage_9]: DefinedLocaleMessage_9[K_9];
+              }>
+            : never,
+          ResourceKeys_9 extends Keys_9 = import("vue-i18n").IsNever<Keys_9> extends false
+            ? Keys_9
+            : never
+        >(
+          key: string | Key_9 | ResourceKeys_9,
+          defaultMsg: string
+        ): string;
+        <
+          Key_10 extends string,
+          DefinedLocaleMessage_10 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_10 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_10> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_10 in keyof DefinedLocaleMessage_10]: DefinedLocaleMessage_10[K_10];
+              }>
+            : never,
+          ResourceKeys_10 extends Keys_10 = import("vue-i18n").IsNever<Keys_10> extends false
+            ? Keys_10
+            : never
+        >(
+          key: string | Key_10 | ResourceKeys_10,
+          defaultMsg: string,
+          options: import("vue-i18n").TranslateOptions<string>
+        ): string;
+        <
+          Key_11 extends string,
+          DefinedLocaleMessage_11 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_11 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_11> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_11 in keyof DefinedLocaleMessage_11]: DefinedLocaleMessage_11[K_11];
+              }>
+            : never,
+          ResourceKeys_11 extends Keys_11 = import("vue-i18n").IsNever<Keys_11> extends false
+            ? Keys_11
+            : never
+        >(
+          key: string | Key_11 | ResourceKeys_11,
+          list: unknown[]
+        ): string;
+        <
+          Key_12 extends string,
+          DefinedLocaleMessage_12 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_12 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_12> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_12 in keyof DefinedLocaleMessage_12]: DefinedLocaleMessage_12[K_12];
+              }>
+            : never,
+          ResourceKeys_12 extends Keys_12 = import("vue-i18n").IsNever<Keys_12> extends false
+            ? Keys_12
+            : never
+        >(
+          key: string | Key_12 | ResourceKeys_12,
+          list: unknown[],
+          plural: number
+        ): string;
+        <
+          Key_13 extends string,
+          DefinedLocaleMessage_13 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_13 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_13> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_13 in keyof DefinedLocaleMessage_13]: DefinedLocaleMessage_13[K_13];
+              }>
+            : never,
+          ResourceKeys_13 extends Keys_13 = import("vue-i18n").IsNever<Keys_13> extends false
+            ? Keys_13
+            : never
+        >(
+          key: string | Key_13 | ResourceKeys_13,
+          list: unknown[],
+          defaultMsg: string
+        ): string;
+        <
+          Key_14 extends string,
+          DefinedLocaleMessage_14 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_14 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_14> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_14 in keyof DefinedLocaleMessage_14]: DefinedLocaleMessage_14[K_14];
+              }>
+            : never,
+          ResourceKeys_14 extends Keys_14 = import("vue-i18n").IsNever<Keys_14> extends false
+            ? Keys_14
+            : never
+        >(
+          key: string | Key_14 | ResourceKeys_14,
+          list: unknown[],
+          options: import("vue-i18n").TranslateOptions<string>
+        ): string;
+        <
+          Key_15 extends string,
+          DefinedLocaleMessage_15 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_15 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_15> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_15 in keyof DefinedLocaleMessage_15]: DefinedLocaleMessage_15[K_15];
+              }>
+            : never,
+          ResourceKeys_15 extends Keys_15 = import("vue-i18n").IsNever<Keys_15> extends false
+            ? Keys_15
+            : never
+        >(
+          key: string | Key_15 | ResourceKeys_15,
+          named: Record<string, unknown>
+        ): string;
+        <
+          Key_16 extends string,
+          DefinedLocaleMessage_16 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_16 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_16> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_16 in keyof DefinedLocaleMessage_16]: DefinedLocaleMessage_16[K_16];
+              }>
+            : never,
+          ResourceKeys_16 extends Keys_16 = import("vue-i18n").IsNever<Keys_16> extends false
+            ? Keys_16
+            : never
+        >(
+          key: string | Key_16 | ResourceKeys_16,
+          named: Record<string, unknown>,
+          plural: number
+        ): string;
+        <
+          Key_17 extends string,
+          DefinedLocaleMessage_17 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_17 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_17> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_17 in keyof DefinedLocaleMessage_17]: DefinedLocaleMessage_17[K_17];
+              }>
+            : never,
+          ResourceKeys_17 extends Keys_17 = import("vue-i18n").IsNever<Keys_17> extends false
+            ? Keys_17
+            : never
+        >(
+          key: string | Key_17 | ResourceKeys_17,
+          named: Record<string, unknown>,
+          defaultMsg: string
+        ): string;
+        <
+          Key_18 extends string,
+          DefinedLocaleMessage_18 extends import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }> = import("@intlify/core-base").RemoveIndexSignature<{
+            [x: string]: import("vue-i18n").LocaleMessageValue<
+              import("vue-i18n").VueMessageType
+            >;
+          }>,
+          Keys_18 = import("vue-i18n").IsEmptyObject<DefinedLocaleMessage_18> extends false
+            ? import("vue-i18n").PickupPaths<{
+                [K_18 in keyof DefinedLocaleMessage_18]: DefinedLocaleMessage_18[K_18];
+              }>
+            : never,
+          ResourceKeys_18 extends Keys_18 = import("vue-i18n").IsNever<Keys_18> extends false
+            ? Keys_18
+            : never
+        >(
+          key: string | Key_18 | ResourceKeys_18,
+          named: Record<string, unknown>,
+          options: import("vue-i18n").TranslateOptions<string>
+        ): string;
+      };
       localDateTime: any;
       getValue: () => any;
-      onChange: () => void;
-      onOk: (e: any) => void;
+      onChange: (e: any) => Promise<void>;
+      onOk: (e: any) => Promise<void>;
     },
     unknown,
     {},

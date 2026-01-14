@@ -1,9 +1,21 @@
+// {
+//   "endpoint": "http://127.0.0.1:9000",
+//   "accessKeyId": "yjs_testj4",
+//   "secretAccessKey": "yjs_passwordj4",
+//   "region": "us-east-1",
+//   "bucketName": "datalb",
+//   "forcePathStyle": true,
+//   "maxFileSize": 104857600,
+//   "allowedFileTypes": ["*"],
+//   "uploadTimeout": 30000
+// }
+
 {
-  "endpoint": "http://127.0.0.1:9000",
+  "endpoint": "http://10.25.145.124:9000",
   "accessKeyId": "yjs_testj4",
   "secretAccessKey": "yjs_passwordj4",
   "region": "us-east-1",
-  "bucketName": "datalb",
+  "bucketName": "datasg",
   "forcePathStyle": true,
   "maxFileSize": 104857600,
   "allowedFileTypes": ["*"],

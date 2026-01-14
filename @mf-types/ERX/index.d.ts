@@ -103,6 +103,42 @@ declare module "ERX/er-type" {
   export type GetGridRowsType = 'current' | 'select' | 'checked' | 'checkedAfterFilter' | 'add' | 'modify' | 'delete' | 'all' | 'allAfterFilter';
 }
 
+declare module "ERX/ErAdvanceFilter" {
+  import { ER } from 'ERX/Er';
+  const _default: import("vue").DefineComponent<{
+    popAdvanceFilterHelperProps: {
+        type: typeof ER.PopAdvanceFilterHelper;
+        default: null;
+        require: boolean;
+    };
+    options: {
+        type: () => {
+            [key: string]: any;
+        };
+        default: {};
+        require: boolean;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    popAdvanceFilterHelperProps: {
+        type: typeof ER.PopAdvanceFilterHelper;
+        default: null;
+        require: boolean;
+    };
+    options: {
+        type: () => {
+            [key: string]: any;
+        };
+        default: {};
+        require: boolean;
+    };
+}>>, {
+    options: {
+        [key: string]: any;
+    };
+    popAdvanceFilterHelperProps: ER.PopAdvanceFilterHelper;
+}, {}>;
+export default _default;
+}
 declare module "ERX/ErFormToolbar" {
   const _default: import("vue").DefineComponent<{
     height: {
@@ -835,56 +871,103 @@ declare module "ERX/ErMenuFormBase" {
     };
   };
 }
-declare module "ERX/ErBusinessFormBase" {
-  import { ER } from 'ERX/Er';
+declare module "ERX/ErBusinessBillApprove" {
   const _default: import("vue").DefineComponent<{
-    formPageOptions: {
-        type: () => ER.BusinessFormPageOptions | ((formReadyParams: any) => ER.BusinessFormPageOptions);
-        required: true;
-        default: () => void;
+    formConfigId: {
+        type: StringConstructor;
+        default: string;
+        require: boolean;
+    };
+    formParas: {
+        type: () => {
+            [key: string]: any;
+        };
+        default: {};
+        require: boolean;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     gridReady: (...args: any[]) => void;
-    layoutValueChanged: (...args: any[]) => void;
-    layoutButtonClick: (...args: any[]) => void;
-    layoutFocus: (...args: any[]) => void;
-    layoutBlur: (...args: any[]) => void;
     formReady: (...args: any[]) => void;
-    layoutGroupButtonClick: (...args: any[]) => void;
-    layoutItemClick: (...args: any[]) => void;
-    layoutItemDoubleClick: (...args: any[]) => void;
-    layoutDropdownOpen: (...args: any[]) => void;
-    layoutItemPressEnter: (...args: any[]) => void;
-    gridRowClick: (...args: any[]) => void;
-    gridRowDoubleClick: (...args: any[]) => void;
-    gridFocusChanged: (...args: any[]) => void;
-    tabChanged: (...args: any[]) => void;
+    layoutQueryClick: (...args: any[]) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    formPageOptions: {
-        type: () => ER.BusinessFormPageOptions | ((formReadyParams: any) => ER.BusinessFormPageOptions);
-        required: true;
-        default: () => void;
+    formConfigId: {
+        type: StringConstructor;
+        default: string;
+        require: boolean;
+    };
+    formParas: {
+        type: () => {
+            [key: string]: any;
+        };
+        default: {};
+        require: boolean;
     };
 }>> & {
     onGridReady?: ((...args: any[]) => any) | undefined;
-    onLayoutValueChanged?: ((...args: any[]) => any) | undefined;
-    onLayoutButtonClick?: ((...args: any[]) => any) | undefined;
-    onLayoutFocus?: ((...args: any[]) => any) | undefined;
-    onLayoutBlur?: ((...args: any[]) => any) | undefined;
     onFormReady?: ((...args: any[]) => any) | undefined;
-    onLayoutGroupButtonClick?: ((...args: any[]) => any) | undefined;
-    onLayoutItemClick?: ((...args: any[]) => any) | undefined;
-    onLayoutItemDoubleClick?: ((...args: any[]) => any) | undefined;
-    onLayoutDropdownOpen?: ((...args: any[]) => any) | undefined;
-    onLayoutItemPressEnter?: ((...args: any[]) => any) | undefined;
-    onGridRowClick?: ((...args: any[]) => any) | undefined;
-    onGridRowDoubleClick?: ((...args: any[]) => any) | undefined;
-    onGridFocusChanged?: ((...args: any[]) => any) | undefined;
-    onTabChanged?: ((...args: any[]) => any) | undefined;
+    onLayoutQueryClick?: ((...args: any[]) => any) | undefined;
 }, {
-    formPageOptions: ER.BusinessFormPageOptions | ((formReadyParams: any) => ER.BusinessFormPageOptions);
+    formConfigId: string;
+    formParas: {
+        [key: string]: any;
+    };
 }, {}>;
 export default _default;
+}
+declare module "ERX/ErBusinessFormBase" {
+  import { ER } from 'ERX/Er';
+  const _default: import("vue").DefineComponent<{
+      formPageOptions: {
+          type: () => ER.BusinessFormPageOptions | ((formReadyParams: any) => ER.BusinessFormPageOptions);
+          required: true;
+          default: () => void;
+      };
+  }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+      gridReady: (...args: any[]) => void;
+      layoutValueChanged: (...args: any[]) => void;
+      layoutButtonClick: (...args: any[]) => void;
+      layoutFocus: (...args: any[]) => void;
+      layoutBlur: (...args: any[]) => void;
+      formReady: (...args: any[]) => void;
+      gridFocusChanged: (...args: any[]) => void;
+      layoutToolbarClick: (...args: any[]) => void;
+      layoutGroupButtonClick: (...args: any[]) => void;
+      layoutItemClick: (...args: any[]) => void;
+      layoutItemDoubleClick: (...args: any[]) => void;
+      layoutDropdownOpen: (...args: any[]) => void;
+      layoutItemPressEnter: (...args: any[]) => void;
+      gridRowClick: (...args: any[]) => void;
+      gridRowDoubleClick: (...args: any[]) => void;
+      tabChanged: (...args: any[]) => void;
+      attachmentChange: (...args: any[]) => void;
+  }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+      formPageOptions: {
+          type: () => ER.BusinessFormPageOptions | ((formReadyParams: any) => ER.BusinessFormPageOptions);
+          required: true;
+          default: () => void;
+      };
+  }>> & {
+      onGridReady?: ((...args: any[]) => any) | undefined;
+      onFormReady?: ((...args: any[]) => any) | undefined;
+      onLayoutValueChanged?: ((...args: any[]) => any) | undefined;
+      onLayoutButtonClick?: ((...args: any[]) => any) | undefined;
+      onLayoutFocus?: ((...args: any[]) => any) | undefined;
+      onLayoutBlur?: ((...args: any[]) => any) | undefined;
+      onGridFocusChanged?: ((...args: any[]) => any) | undefined;
+      onLayoutToolbarClick?: ((...args: any[]) => any) | undefined;
+      onLayoutGroupButtonClick?: ((...args: any[]) => any) | undefined;
+      onLayoutItemClick?: ((...args: any[]) => any) | undefined;
+      onLayoutItemDoubleClick?: ((...args: any[]) => any) | undefined;
+      onLayoutDropdownOpen?: ((...args: any[]) => any) | undefined;
+      onLayoutItemPressEnter?: ((...args: any[]) => any) | undefined;
+      onGridRowClick?: ((...args: any[]) => any) | undefined;
+      onGridRowDoubleClick?: ((...args: any[]) => any) | undefined;
+      onTabChanged?: ((...args: any[]) => any) | undefined;
+      onAttachmentChange?: ((...args: any[]) => any) | undefined;
+  }, {
+      formPageOptions: ER.BusinessFormPageOptions | ((formReadyParams: any) => ER.BusinessFormPageOptions);
+  }, {}>;
+  export default _default;
 }
 declare module "ERX/ErMenuDevPlat" {
   import { ER } from 'ERX/Er';
@@ -1517,32 +1600,185 @@ declare module "ERX/ErMenuQueryEx" {
   }, {}>;
   export default _default;
 }
+declare module "ERX/ErMenuTestIssue" {
+  import { ER } from 'ERX/Er';
+  const _default: import("vue").DefineComponent<{
+      formConfigId: {
+          type: StringConstructor;
+          default: string;
+          require: boolean;
+      };
+      formParas: {
+          type: () => {
+              [key: string]: any;
+          };
+          default: {};
+          require: boolean;
+      };
+      override: {
+          type: ArrayConstructor;
+          default: () => never[];
+          require: boolean;
+      };
+      gridOptions: {
+          type: () => {
+              [key: string]: ER.ErGridOptions;
+          };
+          default: () => void;
+      };
+  }, {
+      erFormHelper: ER.FormHelper;
+      fnDoClick: (e: any) => Promise<boolean | undefined>;
+      queryInfo: (msgFlag?: boolean) => Promise<void>;
+      queryClick: () => Promise<void>;
+  }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+      formConfigId: {
+          type: StringConstructor;
+          default: string;
+          require: boolean;
+      };
+      formParas: {
+          type: () => {
+              [key: string]: any;
+          };
+          default: {};
+          require: boolean;
+      };
+      override: {
+          type: ArrayConstructor;
+          default: () => never[];
+          require: boolean;
+      };
+      gridOptions: {
+          type: () => {
+              [key: string]: ER.ErGridOptions;
+          };
+          default: () => void;
+      };
+  }>>, {
+      gridOptions: {
+          [key: string]: ER.ErGridOptions;
+      };
+      formConfigId: string;
+      formParas: {
+          [key: string]: any;
+      };
+      override: unknown[];
+  }, {}>;
+  export default _default;
+}
+
+declare module "ERX/ErMenuSysParams" {
+  import { ER } from 'ERX/Er';
+  const _default: import("vue").DefineComponent<{
+      formParas: {
+          type: () => {
+              [key: string]: any;
+          };
+          default: {};
+          require: boolean;
+      };
+  }, {
+      erFormHelper: ER.FormHelper;
+      queryInfo: () => Promise<void>;
+      queryClick: () => Promise<boolean | undefined>;
+  }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+      formParas: {
+          type: () => {
+              [key: string]: any;
+          };
+          default: {};
+          require: boolean;
+      };
+  }>>, {
+      formParas: {
+          [key: string]: any;
+      };
+  }, {}>;
+  export default _default;
+}
+declare module "ERX/ErMenuBasicCode" {
+  import { ER } from 'ERX/Er';
+  const _default: import("vue").DefineComponent<{
+  options: {
+      type: ObjectConstructor;
+      default: undefined;
+      require: boolean;
+      };
+  }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+      options: {
+          type: ObjectConstructor;
+          default: undefined;
+          require: boolean;
+      };
+  }>>, {
+      options: Record<string, any>;
+  }, {}>;
+  export default _default;
+}
+declare module "ERX/ErMenuBasicTable" {
+  import { ER } from 'ERX/Er';
+  const _default: import("vue").DefineComponent<{
+    options: {
+        type: ObjectConstructor;
+        default: undefined;
+        require: boolean;
+    };
+  }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+      options: {
+          type: ObjectConstructor;
+          default: undefined;
+          require: boolean;
+      };
+  }>>, {
+      options: Record<string, any>;
+  }, {}>;
+  export default _default;
+}
 declare module "ERX/ErSelect" {
   const _default: import("vue").DefineComponent<{
     modelValue: {
-      type: (ArrayConstructor | StringConstructor | NumberConstructor)[];
+      type: (StringConstructor | NumberConstructor | ArrayConstructor)[];
       default: undefined;
-    };
-    dataSource: {
-      type: any[];
+  };
+  dataSource: {
+      type: () => {
+          [key: string]: any;
+      }[];
       default: () => never[];
-    };
-    columns: {
-      type: any[];
+  };
+  columns: {
+      type: () => {
+          [key: string]: any;
+      }[];
       default: () => never[];
-    };
-    readonly: {
+  };
+  readonly: {
       type: BooleanConstructor;
       default: boolean;
-    };
-    multiple: {
+  };
+  disabled: {
       type: BooleanConstructor;
       default: boolean;
-    };
-    options: {
-      type: any;
+  };
+  multiple: {
+      type: BooleanConstructor;
+      default: boolean;
+  };
+  treeDropdown: {
+      type: BooleanConstructor;
+      default: boolean;
+  };
+  componentSize: {
+      type: StringConstructor;
+      default: string;
+  };
+  options: {
+      type: () => {
+          [key: string]: any;
+      };
       default: () => void;
-    };
+  };
   }, {
     gridApi: any;
   }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
@@ -1676,7 +1912,6 @@ declare module "ERX/ErCheckboxGroup" {
 export default _default;
 
 }
-
 declare module "ERX/ErRadioGroup" {
   const _default: import("vue").DefineComponent<{
     modelValue: {
@@ -1759,6 +1994,111 @@ declare module "ERX/ErRadioGroup" {
 }, {}>;
 export default _default;
 
+}
+declare module "ERX/ErFlow" {
+  const _default: import("vue").DefineComponent<{
+    flowId: {
+        type: StringConstructor;
+        default: string;
+    };
+    editMode: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    showSearch: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    options: {
+        type: () => {
+            [key: string]: any;
+        };
+        default: () => void;
+    };
+}, {
+    getFlowData: () => import("@vue-flow/core").FlowExportObject;
+    setFlowData: (flowData: any) => void;
+    setFlowDataById: (partition: string, flowId: string) => Promise<void>;
+    saveFlowData: (serverPartition: string, flowConfigId: string) => Promise<void>;
+    getOptions: () => any;
+    getAllNodes: any;
+    getAllEdges: any;
+    setFlowTraceInfoByData: (data: any) => void;
+    setFlowTraceInfoByBillNo: (servicePartition: string, billInfo: {
+        [key: string]: any;
+    }, options: any) => Promise<void>;
+    resetFlowTraceInfo: () => void;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    search: (...args: any[]) => void;
+    nodeDetailTraceClick: (...args: any[]) => void;
+    nodeOptionsEdit: (...args: any[]) => void;
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    flowId: {
+        type: StringConstructor;
+        default: string;
+    };
+    editMode: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    showSearch: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    options: {
+        type: () => {
+            [key: string]: any;
+        };
+        default: () => void;
+    };
+}>> & {
+    onSearch?: ((...args: any[]) => any) | undefined;
+    onNodeDetailTraceClick?: ((...args: any[]) => any) | undefined;
+    onNodeOptionsEdit?: ((...args: any[]) => any) | undefined;
+}, {
+    options: {
+        [key: string]: any;
+    };
+    showSearch: boolean;
+    flowId: string;
+    editMode: boolean;
+}, {}>;
+export default _default;
+}
+declare module "ERX/ErBusinessBillFlow" {
+  const _default: import("vue").DefineComponent<{
+      formConfigId: {
+          type: StringConstructor;
+          default: string;
+          require: boolean;
+      };
+      formParas: {
+          type: () => {
+              [key: string]: any;
+          };
+          default: {};
+          require: boolean;
+      };
+  }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+      formConfigId: {
+          type: StringConstructor;
+          default: string;
+          require: boolean;
+      };
+      formParas: {
+          type: () => {
+              [key: string]: any;
+          };
+          default: {};
+          require: boolean;
+      };
+  }>>, {
+      formConfigId: string;
+      formParas: {
+          [key: string]: any;
+      };
+  }, {}>;
+  export default _default;
 }
 declare module "ERX/ErI18n" {
   import { LocaleMessages, VueMessageType } from "vue-i18n";
@@ -1894,6 +2234,7 @@ interface BillSetStatusOptions {
     beforeProcess?: (parmas: any) => (boolean | Promise<boolean>);
     processEiInfo?: (parmas: EI.EIInfo) => (boolean | Promise<boolean>);
     process?: string | ((parmas: any) => (boolean | Promise<boolean>));
+    afterProcess?: (parmas: any) => (boolean | Promise<boolean>);
     confirmMsg?: string | ((parmas: any) => string);
     options?: any;
 }
@@ -1908,6 +2249,7 @@ interface ButtonProcessOptions {
     beforeProcess?: (parmas: any) => (boolean | Promise<boolean>);
     processEiInfo?: (parmas: EI.EIInfo) => (boolean | Promise<boolean>);
     process?: string | ((parmas: any) => (boolean | Promise<boolean>));
+    afterProcess?: (parmas: any) => (boolean | Promise<boolean>);
     confirmMsg?: string | ((parmas: any) => string);
     options?: any;
 }
@@ -1929,13 +2271,12 @@ interface BillQueryOptions {
     options?: any;
 }
 interface BillPagenationOptions {
-    filter?: {
-        [key: string]: any;
-    };
+    service?: string;
+    filter?: { [key: string]: any } | ((parmas: any) => { [key: string]: any } | undefined);
     process?: ((parmas: any) => string);
 }
 interface BillCopyAddOptions {
-    detailConfig: {
+    detailConfig?: {
         [key: string]: {
             copyRowType?: 'default' | 'all' | 'checked';
         };
@@ -1962,7 +2303,7 @@ interface PageInputControlOptions {
     process?: (parmas: any) => void;
 }
 interface ApprovalStepsOptions {
-    approveIdField: string;
+    approveIdField?: string;
     relationBillNoField?: string;
     relationConfigId?: string;
     relationTableName?: string;
@@ -1971,17 +2312,33 @@ interface ApprovalStepsOptions {
     };
     process?: (parmas: any) => (boolean | Promise<boolean>);
 }
-interface BillAttachmentOptions {
-    systemCode?: string;
-    path?: string;
-    maxCount?: number;
-    readonly?: (parmas: any) => boolean;
-    maxLength?: number;
-    tableName?: string;
-    primaryKeys?: string[];
-    fileCountField?: string;
-    service?: string;
-    process?: (parmas: any) => (boolean | Promise<boolean>);
+export interface BillAttachmentOptions  {
+  systemCode?: string,
+  path?: string,
+  maxCount?: number,
+  readonly?: (parmas: any) => boolean,
+  multiple?: boolean,
+  allowBatch?: boolean,
+  maxFileSize?: number,
+  maxBlobSize?: number,
+  allowDownload?: (parmas: any) => boolean,
+  allowDelete?: (parmas: any) => boolean,
+  deleteBySelf?: boolean,
+  searchable?: boolean,
+  showFileDateTime?: boolean,
+  showFileSize?: boolean,
+  maxLength?: number,
+  tableName?: string,
+  primaryKeys?: string[],
+  fileCountField?: string,
+  service?: string,
+  relationAttchList?: ((parmas: any) => { 
+    relationId: string, 
+    relationName: string,  
+    systemCode?: string,
+    url?: string,
+    rootDirectory?: string }[]) | undefined,
+  process?: (parmas: any) => (boolean | Promise<boolean>)
 }
 interface BusinessFormUtils {
     activeTabKey: (key?: string) => string;
@@ -1993,96 +2350,98 @@ interface BusinessFormUtils {
     resetPageInfo: (params: any) => void;
     controlPageInput: (params: any) => void;
 }
-/**
- * 业务表单页面选项
- */
-/**
- * 业务表单页面配置选项接口
- * @interface BusinessFormPageOptions
- * @property {Object} [context] - 上下文对象
- * @property {string} [companyCodeField] - 公司代码字段名
- * @property {string} [companyNameField] - 公司名称字段名
- * @property {string} billNoField - 单据编号字段名
- * @property {string} [billStatusField] - 单据状态字段名
- * @property {string} [billInitialStatus] - 单据初始状态
- * @property {ApprovalStepsOptions | ((params: any) => ApprovalStepsOptions)} billAprroveOptions - 表单助手配置选项*
- * @property {FormHelperOptions | ((params: any) => FormHelperOptions)} formHelperOptions - 表单助手配置选项
- * @property {Object | ((params: any) => Object)} mainLayoutOptions - 主布局配置选项
- * @property {string} mainLayoutOptions.configId - 配置ID
- * @property {string} [mainLayoutOptions.caption] - 标题
- * @property {any} [mainLayoutOptions.options] - 其他选项
- * @property {TabDetailLayoutOptions[] | ((params: any) => TabDetailLayoutOptions[])} detailLayoutOptions - 明细布局配置选项
- * @property {BillPagenationOptions | ((params: any) => BillPagenationOptions)} [paginationBillOptions] - 查询翻页配置选项
- * @property {PageInputControlOptions | ((params: any) => PageInputControlOptions)} [controlInputOptions] - 画面输入控制选项
- * @property {BillQueryOptions | ((params: any) => BillQueryOptions)} [queryBillOptions] - 查询单据配置选项
- * @property {ButtonProcessOptions | ((params: any) => ButtonProcessOptions)} [saveBillOptions] - 保存单据配置选项
- * @property {ButtonProcessOptions | ((params: any) => ButtonProcessOptions)} [deleteBillOptions] - 删除单据配置选项
- * @property {BillSetPageInfoOptions | ((params: any) => BillSetPageInfoOptions)} [setBillPageInfoOptions] - 设置单据页面信息配置选项
- * @property {BillCopyAddOptions | ((params: any) => BillCopyAddOptions)} [copyBillOptions] - 复制单据配置选项
- * @property {Object | ((params: any) => Object)} [setBillStatusOptions] - 设置单据状态选项
- * @property {(params: any) => (boolean | Promise<boolean>)} [resetPageInfo] - 重置页面信息回调
- * @property {(params: any) => void} [afterResetPageInfo] - 重置页面信息后回调
- * @property {(params: any) => void} [billQueryFormInitialized] - 单据查询表单初始化回调
- * @property {(params: any) => (boolean | Promise<boolean>)} [beforePageLoad] - 页面加载前回调
- * @property {(params: any) => void} [afterPageLoad] - 页面加载后回调
- * @property {(params: any) => (boolean | Promise<boolean>)} [fnPreDo] - Fn按钮预处理回调
- * @property {(params: any) => (boolean | Promise<boolean>) } [beforeFnDo] - Fn按钮执行前回调
- * @property {(params: any) => void} [afterFnDo] - Fn按钮执行后回调
- * @property {(params: any) => void} [controlPageInput] - 控制页面输入回调
- * @property {(params: any) => (boolean | Promise<boolean>)} [preventDefault] - 阻止默认行为回调
- * @property {Object | ((params: any) => Object)} [extOptions] - 扩展选项
- */
-interface BusinessFormPageOptions {
-    context?: {
-        [key: string]: any;
-    };
-    companyCodeField?: string;
-    companyNameField?: string;
-    billNoField: string;
-    billStatusField?: string;
-    billInitialStatus?: string;
-    billApproveOptions?: ApprovalStepsOptions | ((parmas: any) => ApprovalStepsOptions);
-    billAttachmentOptions?: BillAttachmentOptions | ((parmas: any) => BillAttachmentOptions);
-    formHelperOptions: FormHelperOptions | ((parmas: any) => FormHelperOptions);
-    mainLayoutOptions: {
-        configId: string;
-        caption?: string;
-        options?: any;
-    } | ((parmas: any) => {
-        configId: string;
-        caption?: string;
-        options?: any;
-    });
-    detailLayoutOptions: TabDetailLayoutOptions[] | ((parmas: any) => TabDetailLayoutOptions[]);
-    paginationBillOptions?: BillPagenationOptions | ((parmas: any) => BillPagenationOptions);
-    controlInputOptions?: PageInputControlOptions | ((parmas: any) => PageInputControlOptions);
-    queryBillOptions?: BillQueryOptions | ((parmas: any) => BillQueryOptions);
-    saveBillOptions?: ButtonProcessOptions | ((parmas: any) => ButtonProcessOptions);
-    deleteBillOptions?: ButtonProcessOptions | ((parmas: any) => ButtonProcessOptions);
-    setBillInfoOptions?: BillSetPageInfoOptions | ((parmas: any) => BillSetPageInfoOptions);
-    copyBillOptions?: BillCopyAddOptions | ((parmas: any) => BillCopyAddOptions);
-    detailPopEditOptions?: DetailPopFreeOptions | ((parmas: any) => DetailPopFreeOptions);
-    detailDeleteOptions?: ButtonProcessOptions | ((parmas: any) => ButtonProcessOptions);
-    setBillStatusOptions?: {
-        [key: string]: BillSetStatusOptions;
-    } | ((parmas: any) => {
-        [key: string]: BillSetStatusOptions;
-    });
-    resetPageInfo?: (parmas: any) => (boolean | Promise<boolean>);
-    afterResetPageInfo?: (parmas: any) => void;
-    billQueryFormInitialized?: (parmas: any) => void;
-    beforePageLoad?: (parmas: any) => (boolean | Promise<boolean>);
-    afterPageLoad?: (parmas: any) => void;
-    fnPreDo?: (parmas: any) => (boolean | Promise<boolean>);
-    beforeFnDo?: (parmas: any) => (boolean | Promise<boolean>);
-    afterFnDo?: (parmas: any) => void;
-    preventDefault?: (parmas: any) => (boolean | Promise<boolean>);
-    extOptions?: {
-        [key: string]: any;
-    } | ((parmas: any) => {
-        [key: string]: any;
-    });
-}
+    /**
+     * 业务表单页面选项
+     */
+    /**
+     * 业务表单页面配置选项接口
+     * @interface BusinessFormPageOptions
+     * @property {Object} [context] - 上下文对象
+     * @property {string} [companyCodeField] - 公司代码字段名
+     * @property {string} [companyNameField] - 公司名称字段名
+     * @property {string} billNoField - 单据编号字段名
+     * @property {string} [billStatusField] - 单据状态字段名
+     * @property {string} [billInitialStatus] - 单据初始状态
+     * @property {ApprovalStepsOptions | ((params: any) => ApprovalStepsOptions)} billAprroveOptions - 表单助手配置选项*
+     * @property {FormHelperOptions | ((params: any) => FormHelperOptions)} formHelperOptions - 表单助手配置选项
+     * @property {Object | ((params: any) => Object)} mainLayoutOptions - 主布局配置选项
+     * @property {string} mainLayoutOptions.configId - 配置ID
+     * @property {string} [mainLayoutOptions.caption] - 标题
+     * @property {any} [mainLayoutOptions.options] - 其他选项
+     * @property {TabDetailLayoutOptions[] | ((params: any) => TabDetailLayoutOptions[])} detailLayoutOptions - 明细布局配置选项
+     * @property {BillPagenationOptions | ((params: any) => BillPagenationOptions)} [paginationBillOptions] - 查询翻页配置选项
+     * @property {PageInputControlOptions | ((params: any) => PageInputControlOptions)} [controlInputOptions] - 画面输入控制选项
+     * @property {BillQueryOptions | ((params: any) => BillQueryOptions)} [queryBillOptions] - 查询单据配置选项
+     * @property {ButtonProcessOptions | ((params: any) => ButtonProcessOptions)} [saveBillOptions] - 保存单据配置选项
+     * @property {ButtonProcessOptions | ((params: any) => ButtonProcessOptions)} [deleteBillOptions] - 删除单据配置选项
+     * @property {BillSetPageInfoOptions | ((params: any) => BillSetPageInfoOptions)} [setBillPageInfoOptions] - 设置单据页面信息配置选项
+     * @property {BillCopyAddOptions | ((params: any) => BillCopyAddOptions)} [copyBillOptions] - 复制单据配置选项
+     * @property {Object | ((params: any) => Object)} [setBillStatusOptions] - 设置单据状态选项
+     * @property {(params: any) => (boolean | Promise<boolean>)} [resetPageInfo] - 重置页面信息回调
+     * @property {(params: any) => void} [afterResetPageInfo] - 重置页面信息后回调
+     * @property {(params: any) => void} [billQueryFormInitialized] - 单据查询表单初始化回调
+     * @property {(params: any) => (boolean | Promise<boolean>)} [beforePageInit] - 页面初始化前回调
+     * @property {(params: any) => (boolean | Promise<boolean>)} [beforePageLoad] - 页面加载前回调
+     * @property {(params: any) => void} [afterPageLoad] - 页面加载后回调
+     * @property {(params: any) => (boolean | Promise<boolean>)} [fnPreDo] - Fn按钮预处理回调
+     * @property {(params: any) => (boolean | Promise<boolean>) } [beforeFnDo] - Fn按钮执行前回调
+     * @property {(params: any) => void} [afterFnDo] - Fn按钮执行后回调
+     * @property {(params: any) => void} [controlPageInput] - 控制页面输入回调
+     * @property {(params: any) => (boolean | Promise<boolean>)} [preventDefault] - 阻止默认行为回调
+     * @property {Object | ((params: any) => Object)} [extOptions] - 扩展选项
+     */
+    interface BusinessFormPageOptions {
+      context?: {
+          [key: string]: any;
+      };
+      companyCodeField?: string;
+      companyNameField?: string;
+      billNoField?: string;
+      billStatusField?: string;
+      billInitialStatus?: string;
+      billApproveOptions?: ApprovalStepsOptions | ((parmas: any) => ApprovalStepsOptions);
+      billAttachmentOptions?: BillAttachmentOptions | ((parmas: any) => BillAttachmentOptions);
+      formHelperOptions?: FormHelperOptions | ((parmas: any) => FormHelperOptions);
+      mainLayoutOptions?: {
+          configId: string;
+          caption?: string;
+          options?: any;
+      } | ((parmas: any) => {
+          configId: string;
+          caption?: string;
+          options?: any;
+      });
+      detailLayoutOptions?: TabDetailLayoutOptions[] | ((parmas: any) => TabDetailLayoutOptions[]);
+      paginationBillOptions?: BillPagenationOptions | ((parmas: any) => BillPagenationOptions);
+      controlInputOptions?: PageInputControlOptions | ((parmas: any) => PageInputControlOptions);
+      queryBillOptions?: BillQueryOptions | ((parmas: any) => BillQueryOptions);
+      saveBillOptions?: ButtonProcessOptions | ((parmas: any) => ButtonProcessOptions);
+      deleteBillOptions?: ButtonProcessOptions | ((parmas: any) => ButtonProcessOptions);
+      setBillInfoOptions?: BillSetPageInfoOptions | ((parmas: any) => BillSetPageInfoOptions);
+      copyBillOptions?: BillCopyAddOptions | ((parmas: any) => BillCopyAddOptions);
+      detailPopEditOptions?: DetailPopFreeOptions | ((parmas: any) => DetailPopFreeOptions);
+      detailDeleteOptions?: ButtonProcessOptions | ((parmas: any) => ButtonProcessOptions);
+      setBillStatusOptions?: {
+          [key: string]: BillSetStatusOptions;
+      } | ((parmas: any) => {
+          [key: string]: BillSetStatusOptions;
+      });
+      resetPageInfo?: (parmas: any) => (boolean | Promise<boolean>);
+      afterResetPageInfo?: (parmas: any) => void;
+      billQueryFormInitialized?: (parmas: any) => void;
+      beforePageInit?: (parmas: any) => (boolean | Promise<boolean>);
+      beforePageLoad?: (parmas: any) => (boolean | Promise<boolean>);
+      afterPageLoad?: (parmas: any) => void;
+      fnPreDo?: (parmas: any) => (boolean | Promise<boolean>);
+      beforeFnDo?: (parmas: any) => (boolean | Promise<boolean>);
+      afterFnDo?: (parmas: any) => void;
+      preventDefault?: (parmas: any) => (boolean | Promise<boolean>);
+      extOptions?: {
+          [key: string]: any;
+      } | ((parmas: any) => {
+          [key: string]: any;
+      });
+  }
 interface MenuFormOptions {
     context?: {
         [key: string]: any;
@@ -2187,6 +2546,7 @@ interface PopQueryEventType {
     open: string;
     beforeQuery: string;
     query: string;
+    afterQuery: string;
     beforeOk: string;
     ok: string;
     beforeCancel: string;
@@ -2239,6 +2599,10 @@ interface UploadOptions {
     maxFileSize?: number;
     maxBlobSize?: number;
     allowDownload?: boolean;
+    allowDelete?: boolean;
+    allowBatch?: boolean;
+    deleteBySelf?: boolean;
+    searchable?: boolean;
     showFileDateTime?: boolean;
     showFileSize?: boolean;
     refreshKey?: string;
@@ -2320,6 +2684,12 @@ class Core {
      * @returns 语言列表
      */
     static getLangList(): any[];
+    /**
+     * 显示loading
+     * @param toggle （true：显示loading， false：关闭loading）
+     * @param element 元素
+     */
+    static loading(toggle: boolean, element?: JQuery<HTMLElement>): void;
     /**
      * 获取ERX全局配置
      * @param reload 是否强制刷新
@@ -2452,6 +2822,19 @@ class Core {
      */
     static $t(key: string, args?: any): string;
     /**
+     * 获取系统账套列表
+     * @param companyCode 账套代码
+     * @returns 系统账套列表
+     */
+    static getCompanyList(companyCode?: string): Promise<any[]>;
+
+    /**
+     * 获取系统用户列表
+     * @param userId 用户ID
+     * @returns 系统用户列表
+     */
+    static getSysUserList(userId?: string): Promise<any[]>;
+    /**
      * 将json对象转换成string并保存成文件
      * @param jsonObject json对象
      * @returns void
@@ -2464,6 +2847,49 @@ class Core {
      * @returns void
      */
     static readFiles(callBack: (files: any[]) => void, options?: any): void;
+    /**
+     * 读取Excel文件
+     * @param callBack 回调函数
+     * @returns void
+     */
+    static readExcelFile(callBack: (data: any[]) => void): void;
+    /**
+     * 导入Excel文件
+     * @param grid grid实例
+     * @param processData 回调函数[返回true则导入，返回false则跳过]
+     * @param importData 导入数据回调函数
+     * @returns void
+     */
+    static importExcelFile(grid: any, processData?: (row: any) => boolean, importData?: (data: Model[]) => void): void;
+    /**
+     * 导出Grid到Excel
+     * @param grid grid实例
+     * @param columnApi columnApi
+     * @param exportOptions 导出选项
+     */
+    static exportGridToExcel(gridApi: GridApi, columnApi: ColumnApi, exportOptions?: {
+        fileName?: string;
+        isBandView?: boolean;
+        isShowFooter?: boolean;
+        isCheckedRows?: boolean;
+        [key: string]: any;
+    }): void;
+    /**
+     * 导出多个Grid到Excel
+     * @param gridInfo 
+     * @param exportOptions 导出选项
+     * @returns void
+     */
+    static exportMuiltiGridToExcel(gridInfo: {gridApi: GridApi, sheetName?: string}[], exportOptions?: {
+      fileName?: string;
+      isCheckedRows?: boolean;
+      numberAsText?: boolean;
+      skipBandRows?: boolean;
+      skipGroupRows?: boolean;
+      skipSummaryRows?: boolean;
+      skipFooterRows?: boolean;
+      dateAsText?: boolean;
+    }): void;
     /**
      * 判断颜色是否为透明色
      * @param color 颜色
@@ -3134,6 +3560,13 @@ class Core {
      * @returns Promise EI.EIInfo
      */
     static callService(partition: 'Master' | 'EP' | string, svcName: string, data: EI.EIInfo, showLoading?: boolean | ILoadingOptions, messageError?: boolean | 'modal', showLoadingAnimotion?: boolean, serviceTransformer?: any): Promise<EI.EIInfo>;
+    /**
+     * 合并表单页面选项
+     * @param pageOptionsProps 页面选项
+     * @param targetOptions 目标选项
+     * @returns 合并后的选项
+     */
+    static mergeFormPageOptions<T extends Record<string, any>>(pageOptionsProps: Partial<T> | undefined, targetOptions: T): T;
 }
 class SysInfo {
     /**
@@ -3228,6 +3661,7 @@ class UploadHelper extends Class {
     constructor(options?: UploadOptions);
     private getUploadConfigInfo;
     initialize(options?: UploadOptions): Promise<void>;
+    getUploadOptions(systemCode?: string): UploadOptions;
     getUploadUrl(systemCode?: string): Promise<string>;
     getFileList(relationId: string, systemCode?: string): Promise<{
         flag: boolean;
@@ -3716,7 +4150,7 @@ class FormHelper {
     /**
      *  开发者权限
      */
-    get DevelopPermisson(): string;
+    get DevelopPermission(): string;
     /**
      *  LayoutBindModelUid
      */
@@ -3948,6 +4382,15 @@ class FormHelper {
     setLayoutItemValidateRules(configId: string, itemCode: string, rules: Array<{
         [key: string]: any;
     }>, replaceExistRules?: boolean): FormHelper;
+    /**
+     * 设置LayoutItem的验证器
+     * @param configId 区域配置代码
+     * @param itemCode 配置项目代码
+     * @param validator 验证器
+     * @param replaceExistRules 替换已有规则
+     * @returns FormHelper
+     */
+    setLayoutItemValidator(configId: string, itemCode: string, validator: (value: any) => boolean | string, replaceExistRules?: boolean): FormHelper;
     /**
      * 设置LayoutItem的标题的颜色
      * @param configId 区域配置代码
@@ -4380,6 +4823,13 @@ class FormHelper {
      */
     getGrid(grid: any): any;
     /**
+     * 根据主Grid和行数据获取明细Grid
+     * @param masterGrid 主Grid对象或配置代码
+     * @param row 行数据[包含uid字段]或行数的uid
+     * @returns 明细Grid对象
+     */
+    getDetailGrid(masterGrid: any, row: any): any;
+    /**
      * 获取Grid对象的Api
      * @param grid grid对象或配置代码
      * @returns Grid对象
@@ -4469,9 +4919,10 @@ class FormHelper {
      * 增加Grid的列
      * @param grid 配置代码或grid对象
      * @param column 列信息
+     * @param insertBeforeColumn 插入到该列(ColId)之前
      * @returns this
      */
-    addGridColumn(grid: any, column: {} | Array<{}>, addToConfig?: boolean): FormHelper;
+    addGridColumn(grid: any, column: {} | Array<{}>, insertBeforeColumn?: string): FormHelper;
     /**
      * 删除Grid的列
      * @param grid 配置代码或grid对象
@@ -4510,6 +4961,15 @@ class FormHelper {
     setGridIndicator(grid: any, keyfilter: {
         [key: string]: any;
     }, rowPinned?: RowPinnedType): FormHelper;
+    /**
+     * 设置两个grid之间的拖拽和放置
+     * @param fromGrid 源grid
+     * @param toGrid 目标grid
+     * @param nteractive 是否可交互
+     * @param dragStopOptions 拖拽停止选项
+     * @returns this
+     */
+    public setDragAndDropBetweenGrids(fromGrid: any, toGrid: any, interactive: boolean, dragStopOptions?: { preventDefault?: boolean, onDragStop?: (params: any) => void }): FormHelper;
     /**
     * 刷新grid的合计行信息
     * @param grid grid实例或配置代码
@@ -4793,11 +5253,10 @@ class FormHelper {
      * 获取配置区域内所有控件的值
      * @param configId 配置区域代码或用逗号隔开的多个配置代码或配置代码数组
      * @param extendJson 扩展属性
+     * @param onlyVisibleControl 是否只获取可见控件的值
      * @returns Json
      */
-    getAllControlValue(configId: string | Array<string>, extendJson?: {
-        [key: string]: any;
-    }): {
+    getAllControlValue(configId: string | Array<string>, extendJson?: { [key: string]: any; }, onlyVisibleControl?: boolean): {
         [key: string]: any;
     };
     /**
@@ -5211,11 +5670,11 @@ class FormHelper {
      * 验证Grid的必填项
      * @param grid grid对象或grid配置代码，支持多个相应的数组
      * @param checkRowType 验证类型
-     * @param checkVisibleColumns 是否只验证可见列
+     * @param checkVisibleColumns 是否只验证可见列，支持逗号隔开的列名字符串，未传入或传入为空时，验证画面上所有布局
      * @param showMessage 是否显示提示信息
      * @returns 验证通过返回true，否则返回false
      */
-    checkGridInput(grid: any | Array<any>, checkRowType?: 'ChangedRows' | 'CheckedRows' | 'AllRows', checkVisibleColumns?: boolean, showMessage?: boolean): boolean;
+    checkGridInput(grid: any | Array<any>, checkRowType?: 'ChangedRows' | 'CheckedRows' | 'AllRows', checkVisibleColumns?: boolean | Array<String>, showMessage?: boolean): boolean;
     private checkGridRowInput;
     /**
      * 勾选指定的grid行[必须有勾选框的情况下]
@@ -5723,6 +6182,16 @@ class FormHelper {
     setGridToolbarVisible(configId: string, toolbarVisible: {
         [key: 'refresh' | 'addrow' | 'copyrow' | 'delete' | 'save' | 'cancel' | 'excel' | 'import' | string]: boolean;
     }): FormHelper;
+        /**
+     * 设置工具栏Grid工具栏按钮动作
+     * @param configId  Grid配置代码
+     * @param name  按钮名称
+     * @param action 动作
+     * @param preventDefault 是否阻止默认动作
+     * @param messageConfirm 是否显示确认对话框
+     * @returns this
+     */
+    setGridToolbarAction(configId: string, name: string, action: Function, preventDefault?: boolean, messageConfirm?: boolean): FormHelper;
     /**
      * 获取工具栏Grid工具栏按钮是否可见
      * @param configId  Grid配置代码
@@ -6208,7 +6677,7 @@ class PopFreeHelper {
     /**
      * 调用服务之前对EIInfo的处理
      */
-    BeforeCallService?: (inInfo: EI.EIInfo) => EI.EIInfo;
+    BeforeCallService?: (inInfo: EI.EIInfo) => EI.EIInfo | Promise<EI.EIInfo>;
     /**
      * app
      */
@@ -6477,7 +6946,7 @@ class PopFormHelper {
     /**
      * 调用服务之前对EIInfo的处理
      */
-    BeforeCallService?: (inInfo: EI.EIInfo) => EI.EIInfo;
+    BeforeCallService?: (inInfo: EI.EIInfo) => EI.EIInfo | Promise<EI.EIInfo>;
     /**
      * app
      */
@@ -6607,163 +7076,163 @@ class PopFormHelper {
      * 设置画面返回值
      */
     setDialogReturnInfo(returnInfo: any): void;
-}
-/**
- * 通用弹出树形查询类
- */
+  }
+    /**
+     * 通用弹出树形查询类
+     */
 class PopTreeHelper {
-    /**
-     * 画面ID[自动生成的唯一标识]
-     */
-    get FormId(): string;
-    /**
-     * 画面返回信息
-     */
-    get DialogReturnInfo(): any;
-    /**
-     * 获取画面是否打开状态
-     */
-    get WindowOpened(): any;
-    /**
-     * 接收的原始数据
-     */
-    get TreeOrgialData(): any[] | (() => any[]);
-    /**
-     * 节点主键字段
-     */
-    get PrimaryField(): string;
-    /**
-     * 节点父键字段
-     */
-    get ParentField(): string;
-    /**
-     * 节点显示字段
-     */
-    get DisplayField(): string;
-    /**
-     * 画面上下文
-     */
-    Context: any;
-    /**
-     * 弹出窗口类型
-     */
-    BordStyle: 'Fixed' | 'Sizable';
-    /**
-     * 自动刷新画面
-     */
-    AutoRefresh: boolean;
-    /**
-     * 是否显示确定按钮
-     */
-    ShowOkButton: boolean;
-    /**
-     * 是否显示取消按钮
-     */
-    ShowCancelButton: boolean;
-    /**
-     * 设置确定按钮的Caption信息
-     */
-    OkButtonCaption: string;
-    /**
-     * 设置取消按钮的Caption信息
-     */
-    CancelButtonCaption: string;
-    /**
-     * 点击确定按钮时弹出画面是否自动关闭
-     */
-    CloseDialogWhenOkClick: boolean;
-    /**
-     * 是否阻止确定按钮的默认事件
-     */
-    OkButtonPreventDefault: boolean;
-    /**
-     * 是否阻止取消按钮的默认事件
-     */
-    CancelButtonPreventDefault: boolean;
-    /**
-     * 关闭窗口后是否卸载组件
-     */
-    UnMountWhenCloseDialog: boolean;
-    /**
-     * 确定按钮之前的数据校验计处理
-     */
-    BeforeOkButtonClick?: (treeNode: any) => boolean | {
-        [key: string]: any;
-    };
-    private _app;
-    private _dialogReturnInfo;
-    private _receiveData;
-    private _events;
-    private _windowOpened;
-    private _options;
-    private _component;
-    private _resolveDialogResult;
-    private _primaryField;
-    private _parentField;
-    private _displayField;
-    /**
-     * 工具类构造函数
-     * @param primaryField 主键字段
-     * @param parentField 父键字段
-     * @param displayField 显示字段
-     * @param options 自定义选项
-     */
-    constructor(primaryField: string, parentField: string, displayField: string, options?: {
-        [key: string]: any;
-    });
-    /**
-     * 设置画面的相关事件
-     * @param event 事件'ok', 'cancel'
-     * @param type 事件类型[初始化/打开/确定/取消]
-     * @returns void
-     */
-    setEvent(type: 'ok' | 'cancel' | 'close', event: Function | undefined): void;
-    /**
-     * 获取画面的相关事件
-     * @param type 事件类型[初始化/打开/确定/取消]
-     * @returns event
-     */
-    getEvent(type: 'ok' | 'cancel' | 'close'): Function | undefined;
-    /**
-     * 执行画面的相关事件
-     * @param type 事件类型[初始化/打开/确定/取消]
-     * @returns event
-     */
-    doEvent(type: 'ok' | 'cancel' | 'close', args?: any): any;
-    /**
-     * 设置自定义选项
-     * @param options 自定义选项
-     * @returns void
-     */
-    setOptions(options: {
-        [key: string]: any;
-    }): void;
-    /**
-     * 获取自定义选项
-     * @param key 选项key
-     * @returns 选项值
-     */
-    getOptions(key?: string): any;
-    /**
-     * 传入数据并展示
-     * @param data 数组或返回数组的函数
-     * @returns
-     */
-    receiveData(data: any[] | (() => any[])): void;
-    /**
-     * 通用弹出表单画面
-     * @param component ErPopTree组件(固定传入ErPopTree或传null)
-     * @param okEvent 确认按钮后调用的事件
-     * @param cancelEvent 取消按钮后调用事件
-     * @returns void
-     */
-    show(component: any, okEvent?: Function, cancelEvent?: Function): Promise<PopTreeReturnInfo>;
-    close(): void;
-    /**
-     * 设置画面返回值
-     */
-    setDialogReturnInfo(returnInfo: any): void;
-}
+      /**
+       * 画面ID[自动生成的唯一标识]
+       */
+      get FormId(): string;
+      /**
+       * 画面返回信息
+       */
+      get DialogReturnInfo(): any;
+      /**
+       * 获取画面是否打开状态
+       */
+      get WindowOpened(): any;
+      /**
+       * 接收的原始数据
+       */
+      get TreeOrgialData(): any[] | Function;
+      /**
+       * 节点主键字段
+       */
+      get PrimaryField(): string;
+      /**
+       * 节点父键字段
+       */
+      get ParentField(): string;
+      /**
+       * 节点显示字段
+       */
+      get DisplayField(): string;
+      /**
+       * 画面上下文
+       */
+      Context: any;
+      /**
+       * 弹出窗口类型
+       */
+      BordStyle: 'Fixed' | 'Sizable';
+      /**
+       * 自动刷新画面
+       */
+      AutoRefresh: boolean;
+      /**
+       * 是否显示确定按钮
+       */
+      ShowOkButton: boolean;
+      /**
+       * 是否显示取消按钮
+       */
+      ShowCancelButton: boolean;
+      /**
+       * 设置确定按钮的Caption信息
+       */
+      OkButtonCaption: string;
+      /**
+       * 设置取消按钮的Caption信息
+       */
+      CancelButtonCaption: string;
+      /**
+       * 点击确定按钮时弹出画面是否自动关闭
+       */
+      CloseDialogWhenOkClick: boolean;
+      /**
+       * 是否阻止确定按钮的默认事件
+       */
+      OkButtonPreventDefault: boolean;
+      /**
+       * 是否阻止取消按钮的默认事件
+       */
+      CancelButtonPreventDefault: boolean;
+      /**
+       * 关闭窗口后是否卸载组件
+       */
+      UnMountWhenCloseDialog: boolean;
+      /**
+       * 确定按钮之前的数据校验计处理
+       */
+      BeforeOkButtonClick?: (treeNode: any) => boolean | {
+          [key: string]: any;
+      };
+      private _app;
+      private _dialogReturnInfo;
+      private _receiveData;
+      private _events;
+      private _windowOpened;
+      private _options;
+      private _component;
+      private _resolveDialogResult;
+      private _primaryField;
+      private _parentField;
+      private _displayField;
+      /**
+       * 工具类构造函数
+       * @param primaryField 主键字段
+       * @param parentField 父键字段
+       * @param displayField 显示字段
+       * @param options 自定义选项
+       */
+      constructor(primaryField: string, parentField: string, displayField: string, options?: {
+          [key: string]: any;
+      });
+      /**
+       * 设置画面的相关事件
+       * @param event 事件'ok', 'cancel'
+       * @param type 事件类型[初始化/打开/确定/取消]
+       * @returns void
+       */
+      setEvent(type: 'ok' | 'cancel' | 'close', event: Function | undefined): void;
+      /**
+       * 获取画面的相关事件
+       * @param type 事件类型[初始化/打开/确定/取消]
+       * @returns event
+       */
+      getEvent(type: 'ok' | 'cancel' | 'close'): Function | undefined;
+      /**
+       * 执行画面的相关事件
+       * @param type 事件类型[初始化/打开/确定/取消]
+       * @returns event
+       */
+      doEvent(type: 'ok' | 'cancel' | 'close', args?: any): any;
+      /**
+       * 设置自定义选项
+       * @param options 自定义选项
+       * @returns void
+       */
+      setOptions(options: {
+          [key: string]: any;
+      }): void;
+      /**
+       * 获取自定义选项
+       * @param key 选项key
+       * @returns 选项值
+       */
+      getOptions(key?: string): any;
+      /**
+       * 传入数据并展示
+       * @param data 数组或返回数组的函数
+       * @returns
+       */
+      receiveData(data: any[] | Function): void;
+      /**
+       * 通用弹出表单画面
+       * @param component ErPopTree组件(固定传入ErPopTree或传null)
+       * @param okEvent 确认按钮后调用的事件
+       * @param cancelEvent 取消按钮后调用事件
+       * @returns void
+       */
+      show(component: any, okEvent?: Function, cancelEvent?: Function): Promise<PopTreeReturnInfo>;
+      close(): void;
+      /**
+       * 设置画面返回值
+       */
+      setDialogReturnInfo(returnInfo: any): void;
+  }
 /**
  * 通用弹出富文本编辑器类
  */
@@ -7049,6 +7518,7 @@ class PopWindowHelper {
     private _events;
     private _formOptions;
     private _resolveDialogResult;
+    private _popWindowComponent;
     /**
      * 工具类构造函数
      * @param partition 分区
@@ -7087,33 +7557,35 @@ class PopWindowHelper {
      * @param type 事件类型[初始化/打开/确定/取消]
      * @returns void
      */
-    setEvent(type: 'initial' | 'open' | 'ok' | 'cancel' | 'close', event: Function | undefined): void;
+    setEvent(type: 'initial' | 'load' | 'open' | 'ok' | 'cancel' | 'close', event: Function | undefined): void;
     /**
      * 获取画面的相关事件
      * @param type 事件类型[初始化/打开/确定/取消]
      * @returns event
      */
-    getEvent(type: 'initial' | 'open' | 'ok' | 'cancel' | 'close'): Function | undefined;
+    getEvent(type: 'initial' | 'load' | 'open' | 'ok' | 'cancel' | 'close'): Function | undefined;
     /**
      * 执行画面的相关事件
      * @param type 事件类型[初始化/打开/确定/取消]
      * @returns event
      */
-    doEvent(type: 'initial' | 'open' | 'ok' | 'cancel' | 'close', args?: any): any;
+    doEvent(type: 'initial' | 'load' | 'open' | 'ok' | 'cancel' | 'close', args?: any): any;
     /**
     * 打开弹出画面
+    * @param component ErPopWindow组件(固定传入ErPopWindow或传null)
     * @param okEvent 确认按钮后调用的事件
     * @param cancelEvent 取消按钮后调用事件
     * @returns void
     */
-    show(okEvent?: Function, cancelEvent?: Function): Promise<PopFreeReturnInfo>;
+    show(component?: any, okEvent?: Function, cancelEvent?: Function): Promise<PopWindowReturnInfo>;
     /**
     * 通用弹出画面
+    * @param component ErPopWindow组件(固定传入ErPopWindow或传null)
     * @param okEvent 确认按钮后调用的事件
     * @param cancelEvent 取消按钮后调用事件
     * @returns void
     */
-    OpenDialog(okEvent?: Function, cancelEvent?: Function): Promise<PopFreeReturnInfo>;
+    OpenDialog(component?: any, okEvent?: Function, cancelEvent?: Function): Promise<PopWindowReturnInfo>;
     /**
      * 关闭弹出画面
      */
@@ -7241,18 +7713,21 @@ class AttachmentHelper {
      */
     showPopAttachment(component: any): Promise<void>;
 }
-  }
+}
 }
 declare module "ERX/SiUtils" {
   import { EI } from 'EIX/ei';
   export class SiUtils {
+    private static GroupCompanyCode;
+    private static DefaultRmbCode;
+    private static sysGroupUserPopTreeHelper;
     /**
      * 公用模块初始化画面service设置
      */
     static FormInitializeService: {
-      SI00: string;
-      SIFI: string;
-      SIAC: string;
+        SI00: string;
+        SIFI: string;
+        SIAC: string;
     };
     /**
      * 获取客商银行信息
@@ -7272,7 +7747,7 @@ declare module "ERX/SiUtils" {
     static deleteBillInfo(partition: string, billInfo: EI.EiBlock | {}, svcName: string, tableName?: string): Promise<EI.EIInfo>;
     /**
      * 单据号查询，单据上翻下翻时使用  QueryType queryType, string companyCode, string tableName, string colName, string billNo, string filter
-     * @param partition 分区代码
+     * @param service 查询服务[分区与服务用.或者/分隔,如BM2A.si00_billno_get, 否则默认使用si00_billno_get]
      * @param queryType 查询类型
      * @param tableName 表名
      * @param colName 列名
@@ -7282,32 +7757,46 @@ declare module "ERX/SiUtils" {
      * @param dataAuthCode 数据授权配置代码
      * @returns 单据号
      */
-    static getBillNo(partition: string, queryType: 'first' | 'pre' | 'next' | 'last', tableName: string, colName: string, companyCode?: string, billNo?: string, filter?: string, dataAuthCode?: string): Promise<{
-      status: number;
-      msg: string;
-      billNo: string;
+    static getBillNo(service: string, queryType: 'first' | 'pre' | 'next' | 'last', tableName: string, colName: string, companyCode?: string, billNo?: string, filter?: string, dataAuthCode?: string): Promise<{
+        status: number;
+        msg: string;
+        billNo: string;
     }>;
     /**
      * 获取汇率信息
      * @param partition 分区代码
      * @param currencyCode 币种代码
      * @param accountPeriod 财务期间
-     * @param companyCode 公司账套
+     * @param accountPeriod 公司账套
      * @returns Promise<{ Rate: 月初汇率; AdjustRate: 调整汇率 }
      */
     static getCurrencyRate(partition: string, currencyCode: string, accountPeriod?: string, companyCode?: string): Promise<{
-      Rate: number;
-      AdjustRate: number;
+        Rate: number;
+        AdjustRate: number;
     }>;
     /**
      * 格式化物料的规格信息
-     * @param spec 规格信息{MAT_SPEC1:number,MAT_SPEC2:number,MAT_SPEC3:number,MAT_SPEC4:number,MAT_SPEC5:number,MAT_SPEC6:string}
+     * @param spec 规格信息{MAT_SPEC1:any,MAT_SPEC2:any,MAT_SPEC3:any,MAT_SPEC4:any,MAT_SPEC5:any,MAT_SPEC6:any}
      * @param formatString 格式化格式['{1}*{2}*{3}C', '1*2*3*4*5*6', {n[1-6]}]
      * @returns Promise<EIInfo>
      */
     static getMaterialSpecDesc(spec: {
-      [key: string]: any;
+        [key: string]: number | string;
     }, formatString?: string): string;
+    /**
+     * 显示系统用户列表
+     * @param confirmCallback 确认回调
+     * @param options 选项[autoRefresh: true, showAllUsers: false, bordStyle: 'Fixed' | 'Sizable', rowSelection: 'multiple' | 'single', enableRangeSelection: true, showFindPanel: true, enableCellTooltip: false]
+     * @returns
+     */
+    static showSysGroupUser(confirmCallback: (data: any) => void, options?: any): void;
+    /**
+     * 显示系统组列表
+     * @param confirmCallback 确认回调
+     * @param options 选项[autoRefresh: true, showAllGroups: false, bordStyle: 'Fixed' | 'Sizable', rowSelection: 'multiple' | 'single', enableRangeSelection: true, showFindPanel: true, enableCellTooltip: false]
+     * @returns
+     */
+    static showSysGroup(confirmCallback: (data: any) => void, options?: any): void;
   }
 
 }
@@ -7340,6 +7829,4 @@ declare module "ERX/FiUtils" {
      */
     static getHoCodeTypeInfo(partition: string, companyCode: string, accountYear: string): Promise<EI.EIInfo>;
   }
-
-
 }

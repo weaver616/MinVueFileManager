@@ -5,6 +5,8 @@ export interface IUserInfo {
     deptId: string;
     deptEName: string;
     deptCName: string;
+    appName?: string;
+    passwordExpired?: Date;
     __origin__?: {
         [key: string]: any;
     };

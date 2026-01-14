@@ -1,6 +1,6 @@
-import { EI } from './ei';
 import { AxiosResponse } from 'axios';
 import { ILoadingOptions, IServiceTransformer } from './type';
+import { EI } from './ei';
 declare class EIManager {
     constructor();
     /**
@@ -22,7 +22,7 @@ declare class EIManager {
      * @param serviceTransformer 请求/响应数据处理回调函数
      * @returns Promise<AxiosResponse<any,any>>
      */
-    handleGet: (url: string, serviceTransformer?: IServiceTransformer, responseType?: "arraybuffer" | "blob" | "document" | "json" | "text" | "stream" | undefined) => Promise<EI.EIInfo | any>;
+    handleGet: (url: string, serviceTransformer?: IServiceTransformer, responseType?: "arraybuffer" | "blob" | "document" | "json" | "text" | "stream" | undefined) => Promise<EI.EIInfo>;
     /**
      * 调用指定分区（或4j应用）的服务
      * @param partName 分区或4j应用名，传入''调用默认分区服务

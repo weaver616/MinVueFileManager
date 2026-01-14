@@ -14,6 +14,7 @@ export declare namespace EIV1 {
         ForeMac: string;
         UUID: string;
         fromEIInfo(eiInfo: EI.EIInfo): void;
+        parseFromJSON(sysJson: Record<string, any> | string): this;
     }
     export class EIInfoV1 {
         constructor();
@@ -26,7 +27,7 @@ export declare namespace EIV1 {
         containsTable(tableName: string): boolean;
         toEiInfo(): EI.EIInfo;
         fromEiInfo(inBlock: EI.EIInfo): void;
-        parseFromJSON(json: string): EIInfoV1;
+        parseFromJSON(json: Record<string, any> | string): EIInfoV1;
     }
     export class DataColumnV1 {
         constructor(name?: string, dataType?: DataTypeV1, caption?: string);
@@ -55,7 +56,7 @@ export declare namespace EIV1 {
         addRows(dataRows: DataRow[]): void;
         toEiBlock(): EI.EiBlock;
         fromEiBlock(inBlock: EI.EiBlock): DataTableV1;
-        parseFromJSON(json: string): DataTableV1;
+        parseFromJSON(json: Record<string, any> | string): DataTableV1;
     }
     export {};
 }

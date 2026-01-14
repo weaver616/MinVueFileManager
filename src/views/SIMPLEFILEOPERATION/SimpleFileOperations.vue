@@ -260,7 +260,7 @@ import {
   FileOutlined
 } from '@ant-design/icons-vue';
 
-import { fileManagerApi, type FileObject, type UploadProgress } from '../api/fileManagerApi';
+import { fileManagerApi, type FileObject, type UploadProgress } from '../../api/fileManagerApi';
 import * as XLSX from 'xlsx';
 
 // 定义预览类型
@@ -641,7 +641,7 @@ const openPreview = async (record: FileObject) => {
     if (type === 'pdf') {
       const { buffer } = await fileManagerApi.downloadInChunks(
         record.key,
-        (p) => {
+        (p: number) => {
           preview.progress = p;
           preview.loadingText = `正在加载 PDF（${p}%）...`;
         },
@@ -657,7 +657,7 @@ const openPreview = async (record: FileObject) => {
     if (type === 'docx') {
       const { buffer } = await fileManagerApi.downloadInChunks(
         record.key,
-        (p) => {
+        (p: number) => {
           preview.progress = p;
           preview.loadingText = `正在加载 Word（${p}%）...`;
         },
@@ -676,7 +676,7 @@ const openPreview = async (record: FileObject) => {
     if (type === 'xlsx') {
       const { buffer } = await fileManagerApi.downloadInChunks(
         record.key,
-        (p) => {
+        (p: number) => {
           preview.progress = p;
           preview.loadingText = `正在加载 Excel（${p}%）...`;
         },
@@ -804,7 +804,7 @@ async function renderXlsx(key: string, name: string) {
 
     const { buffer } = await fileManagerApi.downloadInChunks(
       key,
-      (p) => (previewProgress.value = p),
+      (p: number) => (previewProgress.value = p),
       1024 * 1024 // 1MB 分块
     )
 

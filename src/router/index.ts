@@ -25,7 +25,22 @@ const basicRoutes: Array<RouteRecordRaw> = [
   {
     name: 'SimpleFileOperations',
     path: '/SimpleFileOperations',
-    component: () => import('@/views/SimpleFileOperations.vue')
+    alias: ['/SIMPLEFILEOPERATION', '/simplefileoperation', '/simplefileoperations'],
+    props: (route) => ({
+      initialPath: typeof route.query.path === 'string' ? route.query.path : '',
+      embedded: false
+    }),
+    component: () => import('@/views/SIMPLEFILEOPERATION/SimpleFileOperations.vue')
+  },
+  // 显式支持全大写路径，避免外部系统大小写差异导致 404
+  {
+    name: 'SimpleFileOperationsUpper',
+    path: '/SIMPLEFILEOPERATION',
+    props: (route) => ({
+      initialPath: typeof route.query.path === 'string' ? route.query.path : '',
+      embedded: false
+    }),
+    component: () => import('@/views/SIMPLEFILEOPERATION/SimpleFileOperations.vue')
   },
   {
     name: 'not-found',
@@ -33,5 +48,9 @@ const basicRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/views/404/index.vue')
   }
 ];
+
+
 const routes = dynamicRoutes.concat(basicRoutes);
 export default routes;
+
+

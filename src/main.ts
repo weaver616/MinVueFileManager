@@ -26,6 +26,7 @@ import {
   init,
   IAxiosInitConfig,
 } from "EIX/ei";
+
 import { version as appVersion } from "../package.json";
 import { Splitpanes, Pane } from "splitpanes";
 import "splitpanes/dist/splitpanes.css";
