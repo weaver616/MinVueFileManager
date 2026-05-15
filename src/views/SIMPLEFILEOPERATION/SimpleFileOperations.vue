@@ -648,9 +648,9 @@ const openPreview = async (record: FileObject) => {
         1024 * 1024 // 1MB
       );
       preview.loadingText = '正在解析 PDF...';
+      preview.loading = false;
       await nextTick();
       await renderPdf(buffer);
-      preview.loading = false;
       return;
     }
 
@@ -664,12 +664,11 @@ const openPreview = async (record: FileObject) => {
         1024 * 512 // 512KB
       );
       preview.loadingText = '正在解析 Word...';
+      preview.loading = false;
       await nextTick();
       const mod = await import('mammoth/mammoth.browser');
       const mammoth = (mod as any).default ?? mod;
-      // 第637行
       await renderDocx(buffer, mammoth);
-      preview.loading = false;
       return;
     }
 
@@ -683,9 +682,9 @@ const openPreview = async (record: FileObject) => {
         1024 * 1024 // 1MB
       );
       preview.loadingText = '正在解析 Excel...';
+      preview.loading = false;
       await nextTick();
       await renderXlsxFromBuffer(buffer);
-      preview.loading = false;
       return;
     }
 
@@ -718,7 +717,8 @@ const openInNewTab = () => {
 // PDF 渲染（逐页 Canvas）
 const renderPdf = async (buffer: ArrayBuffer) => {
   const pdf = await getDocument({ data: buffer }).promise;
-  const container = pdfContainerRef.value!;
+  const container = pdfContainerRef.value;
+  if (!container) throw new Error('PDF 预览容器不存在');
   container.innerHTML = '';
 
   for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
@@ -839,7 +839,8 @@ async function renderXlsx(key: string, name: string) {
 const renderDocx = async (buffer: ArrayBuffer, mammoth: any) => {
   try {
     const result = await mammoth.convertToHtml({ arrayBuffer: buffer });
-    const container = docxContainerRef.value!;
+    const container = docxContainerRef.value;
+    if (!container) throw new Error('DOCX 预览容器不存在');
     container.innerHTML = result.value;
     
     // 如果有警告信息，可以在控制台输出
@@ -848,7 +849,8 @@ const renderDocx = async (buffer: ArrayBuffer, mammoth: any) => {
     }
   } catch (error) {
     console.error('DOCX 渲染失败:', error);
-    const container = docxContainerRef.value!;
+    const container = docxContainerRef.value;
+    if (!container) return;
     container.innerHTML = '<div style="color: #ff4d4f; padding: 16px;">文档渲染失败</div>';
   }
 };

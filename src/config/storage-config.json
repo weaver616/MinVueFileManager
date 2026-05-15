@@ -1,9 +1,21 @@
+// {
+//   "endpoint": "http://10.25.145.37:10009",
+//   "accessKeyId": "yjs_testsanb",
+//   "secretAccessKey": "yjs_passwordsanb",
+//   "region": "us-east-1",
+//   "bucketName": "datasanb",
+//   "forcePathStyle": true,
+//   "maxFileSize": 104857600,
+//   "allowedFileTypes": ["*"],
+//   "uploadTimeout": 30000
+// }
+
 {
-  "endpoint": "http://10.25.145.124:9000",
+  "endpoint": "http://10.82.66.69:10005",
   "accessKeyId": "yjs_testj4",
   "secretAccessKey": "yjs_passwordj4",
   "region": "us-east-1",
-  "bucketName": "datasg",
+  "bucketName": "stdfiledisk",
   "forcePathStyle": true,
   "maxFileSize": 104857600,
   "allowedFileTypes": ["*"],

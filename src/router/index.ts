@@ -14,6 +14,7 @@ Object.keys(viewsList).forEach((key) => {
     route = {
       name: name,
       path: `/${name}`,
+      alias: [`/${name.toLowerCase()}`],
       component: () => import(`@/views/${name}/${name}.vue`) //懒加载的！
     };
     dynamicRoutes.push(route);

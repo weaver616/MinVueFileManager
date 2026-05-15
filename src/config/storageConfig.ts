@@ -60,8 +60,18 @@ export function validateStorageConfig(config: Partial<StorageConfiguration>): st
 }
 
 // ---- 新增：远程配置加载与缓存 ----
-const DEFAULT_CONFIG_URL =
-  import.meta.env.VITE_STORAGE_CONFIG_URL || `${window.location.origin}/storage-config.json`;
+function resolveStorageConfigUrl(rawUrl?: string): string {
+  const trimmed = rawUrl?.trim();
+  if (!trimmed) {
+    return `${window.location.origin}/storage-config.json`;
+  }
+  if (/\.json($|\?)/i.test(trimmed)) {
+    return trimmed;
+  }
+  return `${trimmed.replace(/\/+$/, '')}/storage-config.json`;
+}
+
+const DEFAULT_CONFIG_URL = resolveStorageConfigUrl(import.meta.env.VITE_STORAGE_CONFIG_URL);
 
 let _current: StorageConfiguration | null = null;
 let _loadPromise: Promise<StorageConfiguration> | null = null;

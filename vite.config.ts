@@ -22,6 +22,11 @@ import VitePluginHtmlEnv from "vite-plugin-html-env";
 import { FederationTypesPlugin } from "./build/vite-plugin-federation-types";
 import { EnvCheckPlugin } from "./build/vite-plugin-env-check";
 
+import dns from 'dns';
+
+// 规避有些机器 localhost 解析失败导致 vite 启动报错
+dns.setDefaultResultOrder('ipv4first');
+
 // https://vitejs.dev/config/
 export default (configEnv: ConfigEnv) => {
   const { mode } = configEnv;
@@ -37,30 +42,37 @@ export default (configEnv: ConfigEnv) => {
     filename: "remoteEntry.js",
     remotes: {
       EPTFMERGE: `http://localhost:5001/assets/remoteEntry.js`,
-      EFX: {
-        external: `Promise.resolve(
-          window.top && window.top._APP_OPTIONS_ && window.top._APP_OPTIONS_.appContext
-            ? window.top._APP_OPTIONS_.appContext + 'remote_exposes/EFX/assets/remoteEntry.js'
-            : '/remote_exposes/EFX/assets/remoteEntry.js'
-        )`,
-        externalType: "promise",
-      },
-      EIX: {
-        external: `Promise.resolve(
-          window.top && window.top._APP_OPTIONS_ && window.top._APP_OPTIONS_.appContext
-            ? window.top._APP_OPTIONS_.appContext + 'remote_exposes/EIX/assets/remoteEntry.js'
-            : '/remote_exposes/EIX/assets/remoteEntry.js'
-        )`,
-        externalType: "promise",
-      },
-      ERX: {
-        external: `Promise.resolve(
-          window.top && window.top._APP_OPTIONS_ && window.top._APP_OPTIONS_.appContext
-            ? window.top._APP_OPTIONS_.appContext + 'remote_exposes/ERX/assets/remoteEntry.js'
+      EFX: __DEV__
+        ? `/remote_exposes/EFX/assets/remoteEntry.js`
+        : {
+            external: `Promise.resolve(
+              window.top._APP_OPTIONS_  ?
+              window.top._APP_OPTIONS_.appContext + 'remote_exposes/EFX/assets/remoteEntry.js' 
+                : '/remote_exposes/EFX/assets/remoteEntry.js'
+              )`,
+            externalType: "promise",
+          },
+      EIX: __DEV__
+        ? `/remote_exposes/EIX/assets/remoteEntry.js`
+        : {
+            external: `Promise.resolve(
+            window.top._APP_OPTIONS_  ?
+            window.top._APP_OPTIONS_.appContext + 'remote_exposes/EIX/assets/remoteEntry.js' 
+              : '/remote_exposes/EIX/assets/remoteEntry.js'
+            )`,
+            externalType: "promise",
+          },
+
+      ERX: __DEV__
+        ? `/remote_exposes/ERX/assets/remoteEntry.js`
+        : {
+            external: `Promise.resolve(
+          window.top._APP_OPTIONS_  ?
+          window.top._APP_OPTIONS_.appContext + 'remote_exposes/ERX/assets/remoteEntry.js'
             : '/remote_exposes/ERX/assets/remoteEntry.js'
-        )`,
-        externalType: "promise",
-      },
+          )`,
+            externalType: "promise",
+          },
 
      
       // 附件上传组件引用关系。若不需要请注释掉，否则应用会报错
@@ -98,13 +110,13 @@ export default (configEnv: ConfigEnv) => {
     },
     shared: ["vue"],
   };
-  const remoteNames = Object.keys(moduleFederationConfig.remotes!);
-  const remoteZips = remoteNames.map((it) => {
+  const remoteNames = Object.keys(moduleFederationConfig.remotes || {});
+  const remoteZips = __DEV__ ? [] : remoteNames.map((it) => {
     return {
       remoteName: it,
       remoteUrl: `${baseApi}remote_exposes/${it}/${it}.d.zip`,
     };
-  });
+  }).filter(Boolean);
   return defineConfig({
     define: {
       //viteEnv
@@ -149,6 +161,7 @@ export default (configEnv: ConfigEnv) => {
       }),
     ],
     server: {
+      host: "127.0.0.1",
       proxy: {
         // 使用正则表达式匹配 URL
         "^/.*/api": {
@@ -172,6 +185,12 @@ export default (configEnv: ConfigEnv) => {
         "/remote_exposes": {
           target: baseApi,
           changeOrigin: true,
+          bypass(req) {
+            if (req.url === '/remote_exposes/FileManager/storage-config.json') {
+              req.url = '/src/config/storage-config.json';
+              return req.url;
+            }
+          }
         },
       },
     },
